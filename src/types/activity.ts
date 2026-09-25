@@ -3,7 +3,7 @@ export interface ActivityTask {
   title: string;
   description?: string;
   date: Date | null;
-  total_volunteers?: number;
+  totalVolunteers?: number;
   volunteers?: VolunteersByActivity[];
 }
 

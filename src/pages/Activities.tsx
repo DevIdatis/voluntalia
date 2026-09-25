@@ -142,7 +142,7 @@ export default function Activities() {
                         variant="default"
                         onClick={() => handleShowVolunteers(activity)}
                       >
-                        {activity.total_volunteers}
+                        {activity.totalVolunteers}
                       </Badge>
                     </TableCell>
                     <TableCell>

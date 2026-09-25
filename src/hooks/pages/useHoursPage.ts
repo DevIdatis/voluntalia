@@ -68,9 +68,9 @@ export const useHoursPage = () => {
   });
 
   // Stats configuration
-  const totalHours = worklog.reduce((sum, entry) => sum + (entry.hours.hours || 0), 0);
-  const approvedHours = worklog.filter(e => e.status === "approved").reduce((sum, entry) => sum + (entry.hours.hours || 0), 0);
-  const pendingHours = worklog.filter(e => e.status === "pending").reduce((sum, entry) => sum + (entry.hours.hours || 0), 0);
+  const totalHours = worklog.reduce((sum, entry) => sum + (entry.hours || 0), 0);
+  const approvedHours = worklog.filter(e => e.status === "approved").reduce((sum, entry) => sum + (entry.hours || 0), 0);
+  const pendingHours = worklog.filter(e => e.status === "pending").reduce((sum, entry) => sum + (entry.hours || 0), 0);
 
   const statsConfig = [
     {
@@ -117,8 +117,8 @@ export const useHoursPage = () => {
   const handleSubmitHours = async () => {
     try {
       const newWorkLog: CreateWorkLogDTO = {
-        week_start: form.formData.date,
-        hours: `${form.formData.hours} hours`,
+        weekStart: form.formData.date,
+        hours: Number(form.formData.hours),
         notes: form.formData.description,
         activity: form.formData.activity
       };
@@ -150,8 +150,8 @@ export const useHoursPage = () => {
   const handleEditEntry = (entry: WorkLog) => {
     setEditingEntry(entry);
     form.updateFormData({
-      date: entry.week_start,
-      hours: entry.hours.hours?.toString() || "",
+      date: entry.weekStart,
+      hours: entry.hours?.toString() || "",
       activity: entry.activity,
       description: entry.notes
     });
@@ -184,7 +184,8 @@ export const useHoursPage = () => {
     const matchesSearch = entry.notes.toLowerCase().includes(searchAndFilter.searchTerm.toLowerCase()) ||
                          (entry.activity?.description && entry.activity.description.toLowerCase().includes(searchAndFilter.searchTerm.toLowerCase()));
     
-    const matchesFilter = searchAndFilter.filters.status === "all" || entry.status === searchAndFilter.filters.status;
+    const statusFilter = searchAndFilter.filters.status ?? "all";
+    const matchesFilter = statusFilter === "all" || entry.status === statusFilter;
     
     return matchesSearch && matchesFilter;
   });

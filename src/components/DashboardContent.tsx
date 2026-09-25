@@ -1,110 +1,73 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, MapPin, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { Clock, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { useActivities } from "@/hooks/activity/useActivities";
+import { useWorkLog } from "@/hooks/workLog/useWorkLog";
+import { useAuth } from "@/contexts/AuthContext";
+import { isVolunteer } from "@/config/permissions";
+import { formatDate } from "@/lib/formatDate";
 
 export const DashboardContent = () => {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: "Community Food Drive",
-      date: "Tomorrow, 9:00 AM",
-      location: "Central Community Center",
-      volunteers: 12,
-      status: "open"
-    },
-    {
-      id: 2,
-      title: "Park Cleanup Initiative", 
-      date: "This Saturday, 8:00 AM",
-      location: "Riverside Park",
-      volunteers: 8,
-      status: "open"
-    },
-    {
-      id: 3,
-      title: "Senior Center Visit",
-      date: "Next Monday, 2:00 PM", 
-      location: "Sunset Senior Living",
-      volunteers: 6,
-      status: "full"
-    }
-  ];
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { data: activities = [] } = useActivities();
+  const { data: worklog = [] } = useWorkLog();
 
-  const recentActivity = [
-    {
-      id: 1,
-      action: "Completed",
-      event: "Library Book Sorting",
-      time: "2 hours ago",
-      hours: 4
-    },
-    {
-      id: 2,
-      action: "Joined",
-      event: "Community Garden Project",
-      time: "1 day ago",
-      hours: 0
-    },
-    {
-      id: 3,
-      action: "Completed",
-      event: "Youth Mentoring Session",
-      time: "3 days ago", 
-      hours: 2
-    }
-  ];
+  // Página de "gestionar/ver actividades" según el rol: los COORDINATOR administran
+  // actividades en /activities; los VOLUNTEER solo pueden ver las suyas en su perfil.
+  const activitiesDestination = isVolunteer(user?.role) ? "/profile" : "/activities";
+
+  const upcomingActivities = activities
+    .filter((a) => a.date && new Date(a.date) >= new Date(new Date().toDateString()))
+    .sort((a, b) => new Date(a.date as Date).getTime() - new Date(b.date as Date).getTime())
+    .slice(0, 3);
+
+  const recentWorklog = [...worklog]
+    .sort((a, b) => new Date(b.weekStart).getTime() - new Date(a.weekStart).getTime())
+    .slice(0, 3);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        {/* Upcoming Events */}
+
+        {/* Upcoming Activities */}
         <Card className="shadow-card hover:shadow-hover transition-smooth">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Clock className="h-5 w-5 text-soft-blue" />
-              <span>Upcoming Events</span>
+              <span>Upcoming Activities</span>
             </CardTitle>
             <CardDescription>
-              Events you can join to make an impact in your community
+              Activities coming up that you can be part of
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {upcomingEvents.map((event) => (
-              <div key={event.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
-                <div className="flex justify-between items-start mb-2">
-                  <h4 className="font-medium text-foreground">{event.title}</h4>
-                  <Badge variant={event.status === 'full' ? 'destructive' : 'secondary'}>
-                    {event.status === 'full' ? 'Full' : 'Open'}
-                  </Badge>
-                </div>
-                <div className="space-y-1 text-sm text-muted-foreground">
-                  <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{event.date}</span>
+            {upcomingActivities.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No upcoming activities scheduled.</p>
+            ) : (
+              upcomingActivities.map((activity) => (
+                <div key={activity.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-medium text-foreground">{activity.title}</h4>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Users className="h-4 w-4" />
-                    <span>{event.volunteers} volunteers signed up</span>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="h-4 w-4" />
+                      <span>{formatDate(activity.date, { format: "medium" })}</span>
+                    </div>
+                    {activity.description && (
+                      <p>{activity.description}</p>
+                    )}
+                    <div className="flex items-center space-x-2">
+                      <Users className="h-4 w-4" />
+                      <span>{activity.volunteers?.length ?? 0} volunteers signed up</span>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-3">
-                  <Button 
-                    size="sm" 
-                    disabled={event.status === 'full'}
-                    className="bg-gradient-primary hover:shadow-soft transition-smooth"
-                  >
-                    {event.status === 'full' ? 'Event Full' : 'Join Event'}
-                    <ArrowRight className="h-4 w-4 ml-1" />
-                  </Button>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </CardContent>
         </Card>
 
@@ -116,41 +79,45 @@ export const DashboardContent = () => {
               <span>Recent Activity</span>
             </CardTitle>
             <CardDescription>
-              Your latest volunteer contributions and engagements
+              Your latest logged volunteer hours
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {recentActivity.map((activity) => (
-              <div key={activity.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <Badge variant={activity.action === 'Completed' ? 'default' : 'secondary'}>
-                        {activity.action}
-                      </Badge>
-                      <span className="font-medium text-foreground">{activity.event}</span>
+            {recentWorklog.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No hours logged yet.</p>
+            ) : (
+              recentWorklog.map((entry) => (
+                <div key={entry.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-1">
+                      <div className="flex items-center space-x-2">
+                        <Badge variant="default">Logged</Badge>
+                        <span className="font-medium text-foreground">
+                          {entry.activityTitle || entry.activity?.title || entry.notes}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{formatDate(entry.weekStart)}</p>
                     </div>
-                    <p className="text-sm text-muted-foreground">{activity.time}</p>
-                  </div>
-                  {activity.hours > 0 && (
                     <div className="text-right">
-                      <p className="text-lg font-bold text-soft-green">+{activity.hours}h</p>
+                      <p className="text-lg font-bold text-soft-green">+{entry.hours ?? 0}h</p>
                       <p className="text-xs text-muted-foreground">volunteer hours</p>
                     </div>
-                  )}
+                  </div>
                 </div>
-              </div>
-            ))}
-            
+              ))
+            )}
+
             {/* Quick Actions */}
             <div className="pt-4 border-t border-border">
               <h5 className="font-medium text-foreground mb-3">Quick Actions</h5>
               <div className="grid grid-cols-2 gap-3">
-                <Button variant="outline" size="sm" className="shadow-soft">
-                  View All Events
+                <Button variant="outline" size="sm" className="shadow-soft" onClick={() => navigate(activitiesDestination)}>
+                  View Activities
+                  <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
-                <Button variant="outline" size="sm" className="shadow-soft">
-                  My Schedule
+                <Button variant="outline" size="sm" className="shadow-soft" onClick={() => navigate("/hours")}>
+                  My Hours
+                  <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </div>
             </div>

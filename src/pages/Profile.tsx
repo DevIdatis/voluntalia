@@ -39,14 +39,14 @@ const Profile = () => {
   // Destructure user from data to avoid user.user syntax
   const user = data?.user as CurrentUser | undefined;
 
-  const totalHours = worklog.reduce((sum, entry) => sum + (entry.hours.hours || 0), 0);
+  const totalHours = worklog.reduce((sum, entry) => sum + (entry.hours || 0), 0);
   const eventsAttended = user?.volunteerActivities?.length ?? 0;
   const skills = user?.skills?.map((skill) => skill.name) ?? [];
   const recentActivities = worklog.slice(0, 3).map((entry) => ({
     id: entry.id,
     event: entry.activity?.title || entry.notes,
     date: entry.weekStart,
-    hours: entry.hours.hours || 0,
+    hours: entry.hours || 0,
   }));
 
   return (

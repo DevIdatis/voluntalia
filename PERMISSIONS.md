@@ -158,9 +158,8 @@ const MiComponente = () => {
 ---
 
 ## 📅 Última Actualización
-**Fecha:** 2025-10-06  
-**Rama:** ALIA_SP1_VERIFY_role-permissions  
-**Estado:** En revisión
+**Fecha:** 2026-08-17
+**Estado:** Revisado — la matriz de permisos y el comportamiento descrito en este documento se verificaron línea por línea contra el código real (incluyendo que "Dashboard Diferenciado" sigue sin implementar, y que `/unauthorized` ya está registrado como ruta real).
 
 ---
 

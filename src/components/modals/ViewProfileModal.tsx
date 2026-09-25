@@ -1,10 +1,14 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { User, Mail, Calendar, Activity, Award, Clock } from "lucide-react";
+import { User, Mail, Calendar, Activity, Award, Clock, Check, X } from "lucide-react";
 import { User as UserType } from "@/types/user";
+import { useWorkLogsForUser } from "@/hooks/workLog/useWorkLogsForUser";
+import { useUpdateWorklogStatus } from "@/hooks/workLog/useUpdateWorklogStatus";
+import { useToast } from "@/hooks/use-toast";
 
 interface ViewProfileModalProps {
   isOpen: boolean;
@@ -17,6 +21,11 @@ const ViewProfileModal: React.FC<ViewProfileModalProps> = ({
   onClose,
   volunteer
 }) => {
+  const { toast } = useToast();
+  const { data: worklog = [] } = useWorkLogsForUser(volunteer?.id, isOpen);
+  const updateStatus = useUpdateWorklogStatus();
+  const totalHours = worklog.reduce((sum, entry) => sum + (entry.hours || 0), 0);
+
   if (!volunteer) return null;
 
   const formatDate = (dateString: string) => {
@@ -26,6 +35,18 @@ const ViewProfileModal: React.FC<ViewProfileModalProps> = ({
       day: 'numeric'
     });
   };
+
+  const handleReview = async (id: string, status: "approved" | "rejected") => {
+    try {
+      await updateStatus.mutateAsync({ id, status });
+      toast({ title: status === "approved" ? "Hours approved" : "Hours rejected" });
+    } catch {
+      toast({ title: "Error", description: "Could not update the entry.", variant: "destructive" });
+    }
+  };
+
+  const statusVariant = (status?: string) =>
+    status === 'approved' ? 'default' : status === 'rejected' ? 'destructive' : 'secondary';
 
   const getRoleColor = (role?: string) => {
     switch (role?.toLowerCase()) {
@@ -137,6 +158,69 @@ const ViewProfileModal: React.FC<ViewProfileModalProps> = ({
             </CardContent>
           </Card>
 
+          {/* Volunteer Hours */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Clock className="h-5 w-5 text-warm-accent" />
+                <span>Volunteer Hours</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {worklog.length > 0 ? (
+                <div className="space-y-3">
+                  {worklog.map((entry) => (
+                    <div
+                      key={entry.id}
+                      className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                    >
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="font-medium text-foreground">
+                            {entry.hours} {entry.hours === 1 ? 'hour' : 'hours'} - {formatDate(entry.weekStart)}
+                          </span>
+                          <Badge variant={statusVariant(entry.status)}>
+                            {entry.status || 'pending'}
+                          </Badge>
+                        </div>
+                        {entry.notes && (
+                          <p className="text-sm text-muted-foreground mt-1">{entry.notes}</p>
+                        )}
+                      </div>
+                      {entry.status === 'pending' && (
+                        <div className="flex items-center space-x-1 ml-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-soft-green hover:text-soft-green"
+                            disabled={updateStatus.isPending}
+                            onClick={() => handleReview(entry.id, 'approved')}
+                          >
+                            <Check className="h-4 w-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-destructive hover:text-destructive"
+                            disabled={updateStatus.isPending}
+                            onClick={() => handleReview(entry.id, 'rejected')}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <Clock className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+                  <p className="text-muted-foreground">No hours logged yet</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
           {/* Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
@@ -144,7 +228,7 @@ const ViewProfileModal: React.FC<ViewProfileModalProps> = ({
                 <div className="flex items-center space-x-3">
                   <Clock className="h-8 w-8 text-warm-accent" />
                   <div>
-                    <p className="text-2xl font-bold text-foreground">--</p>
+                    <p className="text-2xl font-bold text-foreground">{totalHours}</p>
                     <p className="text-sm text-muted-foreground">Total Hours</p>
                   </div>
                 </div>
@@ -156,7 +240,7 @@ const ViewProfileModal: React.FC<ViewProfileModalProps> = ({
                 <div className="flex items-center space-x-3">
                   <Award className="h-8 w-8 text-primary" />
                   <div>
-                    <p className="text-2xl font-bold text-foreground">--</p>
+                    <p className="text-2xl font-bold text-foreground">{volunteer.volunteerActivities?.length || 0}</p>
                     <p className="text-sm text-muted-foreground">Events Joined</p>
                   </div>
                 </div>

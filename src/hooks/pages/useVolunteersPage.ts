@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useSearchAndFilter } from '@/hooks/common/useSearchAndFilter';
 import { useModal } from '@/hooks/common/useModal';
 import { useStats } from '@/hooks/common/useStats';
+import { useDashboardStats } from '@/hooks/dashboard/useDashboardStats';
 import { User } from '@/types/user';
 import { Users, Award, Clock } from 'lucide-react';
 
@@ -26,6 +27,7 @@ export const useVolunteersPage = () => {
   // Data fetching
   const { data: users = [], isLoading, error } = useUsers();
   const { data: activities = [] } = useActivities();
+  const { data: dashboardStats } = useDashboardStats();
 
   // Mutations
   const assignActivityMutation = useAssignActivity();
@@ -124,14 +126,21 @@ export const useVolunteersPage = () => {
       key: 'hours',
       label: 'Hours This Month',
       icon: Clock,
-      calculate: () => '3,492', // This would come from actual hours data
+      calculate: () => dashboardStats?.hoursThisMonth ?? 0,
       color: 'text-warm-accent',
     },
     {
       key: 'new',
       label: 'New This Month',
       icon: Users,
-      calculate: () => '91', // This would come from actual new users data
+      calculate: (data: User[]) => {
+        const now = new Date();
+        return data.filter((u) => {
+          if (!u.createdAt) return false;
+          const created = new Date(u.createdAt);
+          return created.getFullYear() === now.getFullYear() && created.getMonth() === now.getMonth();
+        }).length;
+      },
       color: 'text-destructive',
     },
   ];

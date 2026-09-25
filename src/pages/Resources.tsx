@@ -35,7 +35,7 @@ const Resources = () => {
   const { user } = useAuth();
 
   const counts = resources.reduce<Record<string, number>>((acc, r) => {
-    acc[r.resource_type_id] = (acc[r.resource_type_id] || 0) + 1;
+    acc[r.resourceTypeId] = (acc[r.resourceTypeId] || 0) + 1;
     return acc;
   }, {});
 
@@ -48,9 +48,9 @@ const Resources = () => {
   };
 
   const handlePreviewResource = (resource: Resource) => {
-    if (!resource.storage_path) return;
+    if (!resource.storagePath) return;
 
-    const cleaned = resource.storage_path
+    const cleaned = resource.storagePath
       .replace(/\\/g, '/')               
       .replace(/^https?:\/+/, '')        
       .replace(/^\/+/, '');              
@@ -72,7 +72,7 @@ const Resources = () => {
           confirmText: 'Delete',
           variant: 'destructive',
           onConfirm: async () => {
-            if(resource.user_id !== user?.id){
+            if(resource.userId !== user?.id){
               toast({
                 title: "Unauthorized",
                 description: "You do not have permission to delete this resource.",
@@ -126,15 +126,15 @@ const Resources = () => {
                         resource.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         parseTags(resource.tags).some(tag => tag.includes(searchTerm.toLowerCase()));
     
-    const matchesFilter = filterBy === "all" || resource.category_id === filterBy;
+    const matchesFilter = filterBy === "all" || resource.categoryId === filterBy;
     
     return matchesSearch && matchesFilter;
   });
 
-  const documents = filteredResources.filter(r => r.resource_type_id === types.find(t => t.name === 'document')?.id);
-  const videos = filteredResources.filter(r => r.resource_type_id === types.find(t => t.name === 'video')?.id);
-  const courses = filteredResources.filter(r => r.resource_type_id === types.find(t => t.name === 'course')?.id);
-  const templates = filteredResources.filter(r => r.resource_type_id === types.find(t => t.name === 'template')?.id);
+  const documents = filteredResources.filter(r => r.resourceTypeId === types.find(t => t.name === 'document')?.id);
+  const videos = filteredResources.filter(r => r.resourceTypeId === types.find(t => t.name === 'video')?.id);
+  const courses = filteredResources.filter(r => r.resourceTypeId === types.find(t => t.name === 'course')?.id);
+  const templates = filteredResources.filter(r => r.resourceTypeId === types.find(t => t.name === 'template')?.id);
   const totalDownloads = resources.reduce((sum, r) => sum + r.downloads, 0);
 
   return (
@@ -259,8 +259,8 @@ const Resources = () => {
                         <div className="flex-1">
                           <div className="flex items-start justify-between mb-2">
                             <CardTitle className="text-lg">{resource.filename}</CardTitle>
-                            <Badge variant="outline" className={getCategoryColor(resource.category_id)}>
-                              {categories.find(c => c.id === resource.category_id)?.name}
+                            <Badge variant="outline" className={getCategoryColor(resource.categoryId)}>
+                              {categories.find(c => c.id === resource.categoryId)?.name}
                             </Badge>
                           </div>
                           <CardDescription className="mb-3">{resource.description}</CardDescription>
@@ -275,7 +275,7 @@ const Resources = () => {
                         </div>
                         <div className="flex items-center justify-between text-sm text-muted-foreground">
                           <span>Downloads: {resource.downloads}</span>
-                          <span>Added: {new Date(resource.created_at).toLocaleDateString('es-ES')}</span>
+                          <span>Added: {new Date(resource.createdAt).toLocaleDateString('es-ES')}</span>
                         </div>
                         <div className="flex flex-wrap gap-1 mb-4">
                           {(JSON.parse(resource.tags || '[]') as string[]).map((tag) => (
@@ -342,7 +342,7 @@ const Resources = () => {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <CardTitle className="text-lg">{resource.filename}</CardTitle>
-                          <Badge variant="outline" className={getCategoryColor(resource.category_id)}>
+                          <Badge variant="outline" className={getCategoryColor(resource.categoryId)}>
                             {resource.category}
                           </Badge>
                         </div>
@@ -358,7 +358,7 @@ const Resources = () => {
                       </div>
                       <div className="flex items-center justify-between text-sm text-muted-foreground">
                         <span>Downloads: {resource.downloads}</span>
-                        <span>Added: {new Date(resource.created_at).toLocaleDateString('es-ES')}</span>
+                        <span>Added: {new Date(resource.createdAt).toLocaleDateString('es-ES')}</span>
                       </div>
                       <div className="flex space-x-2">
                         <Button variant="outline" size="sm" className="flex-1">
@@ -395,7 +395,7 @@ const Resources = () => {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <CardTitle className="text-lg">{resource.filename}</CardTitle>
-                          <Badge variant="outline" className={getCategoryColor(resource.category_id)}>
+                          <Badge variant="outline" className={getCategoryColor(resource.categoryId)}>
                             {resource.category}
                           </Badge>
                         </div>
@@ -411,7 +411,7 @@ const Resources = () => {
                       </div>
                       <div className="flex items-center justify-between text-sm text-muted-foreground">
                         <span>Views: {resource.downloads}</span>
-                        <span>Added: {new Date(resource.created_at).toLocaleDateString('es-ES')}</span>
+                        <span>Added: {new Date(resource.createdAt).toLocaleDateString('es-ES')}</span>
                       </div>
                       <Button size="sm" className="w-full">
                         <ExternalLink className="h-4 w-4 mr-2" />
@@ -436,7 +436,7 @@ const Resources = () => {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <CardTitle className="text-lg">{resource.filename}</CardTitle>
-                          <Badge variant="outline" className={getCategoryColor(resource.category_id)}>
+                          <Badge variant="outline" className={getCategoryColor(resource.categoryId)}>
                             {resource.category}
                           </Badge>
                         </div>
@@ -473,7 +473,7 @@ const Resources = () => {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <CardTitle className="text-lg">{resource.filename}</CardTitle>
-                          <Badge variant="outline" className={getCategoryColor(resource.category_id)}>
+                          <Badge variant="outline" className={getCategoryColor(resource.categoryId)}>
                             {resource.category}
                           </Badge>
                         </div>
@@ -489,7 +489,7 @@ const Resources = () => {
                       </div>
                       <div className="flex items-center justify-between text-sm text-muted-foreground">
                         <span>Downloads: {resource.downloads}</span>
-                        <span>Added: {new Date(resource.created_at).toLocaleDateString('es-ES')}</span>
+                        <span>Added: {new Date(resource.createdAt).toLocaleDateString('es-ES')}</span>
                       </div>
                       <Button 
                             size="sm" 

@@ -1,48 +1,37 @@
 import api from "@/api/axios";
 import { ENDPOINTS } from "@/api/endpoints";
-import { WorkLog, WorkLogReponse, CreateWorkLogDTO, UpdateWorkLogDTO } from "@/types/workLog";
-import { camelizeKeys, snakeifyKeys } from "@/lib/caseUtils";
+import { WorkLog, CreateWorkLogDTO, UpdateWorkLogDTO } from "@/types/workLog";
 
-// type CreateUserResponse = {
-//   user: User;
-// };
-
-type CreateWorkLog = {
-    worklog: WorkLog;
-}
-
+// El interceptor de axios ya convierte a/desde camelCase.
 export const getWorkLogsByUser = async (): Promise<WorkLog[]> => {
   const response = await api.get(`${ENDPOINTS.WORKLOG}/me`);
-  const raw = response.data?.worklog ?? [];
-  const normalized = camelizeKeys<WorkLog[]>(raw).map((w) => ({
-    ...w,
-    weekStart: w.weekStart ?? ((w as unknown as Record<string, unknown>)['week_start'] as string | undefined),
-    activityTitle: w.activityTitle ?? ((w as unknown as Record<string, unknown>)['activity_title'] as string | undefined),
-  }));
-  return normalized as WorkLog[];
+  return response.data?.worklog ?? [];
 };
 
+// * COORDINATOR only: fetch another user's worklog entries
+export const getWorkLogsForUser = async (userId: string): Promise<WorkLog[]> => {
+  const response = await api.get(`${ENDPOINTS.WORKLOG}/user/${userId}`);
+  return response.data?.worklog ?? [];
+};
 
 export const createWorkLog = async (workLogData: CreateWorkLogDTO): Promise<WorkLog> => {
-  const payload = snakeifyKeys(workLogData);
-  const response = await api.post(`${ENDPOINTS.WORKLOG}/create`, payload);
-  const raw = response.data?.worklog ?? response.data;
-  const created = camelizeKeys<WorkLog>(raw);
-  created.weekStart = created.weekStart ?? ((raw as Record<string, unknown>)['week_start'] as string | undefined);
-  created.activityTitle = created.activityTitle ?? ((raw as Record<string, unknown>)['activity_title'] as string | undefined);
-  return created;
+  const response = await api.post(`${ENDPOINTS.WORKLOG}/create`, workLogData);
+  return response.data?.worklog ?? response.data;
 };
 
 export const deleteWorklog = async (id: string): Promise<void> => {
   await api.delete(`${ENDPOINTS.WORKLOG}/${id}`);
 };
 
+// * COORDINATOR only: approve or reject a worklog entry
+export const updateWorklogStatus = async (
+  id: string,
+  status: "pending" | "approved" | "rejected"
+): Promise<void> => {
+  await api.patch(`${ENDPOINTS.WORKLOG}/${id}/status`, { status });
+};
+
 export const updateWorklog = async (id: string, worklogData: Partial<UpdateWorkLogDTO>): Promise<WorkLog> => {
-  const payload = snakeifyKeys(worklogData);
-  const response = await api.put(`${ENDPOINTS.WORKLOG}/${id}`, payload);
-  const raw = response.data;
-  const updated = camelizeKeys<WorkLog>(raw);
-  updated.weekStart = updated.weekStart ?? ((raw as Record<string, unknown>)['week_start'] as string | undefined);
-  updated.activityTitle = updated.activityTitle ?? ((raw as Record<string, unknown>)['activity_title'] as string | undefined);
-  return updated;
+  const response = await api.put(`${ENDPOINTS.WORKLOG}/${id}`, worklogData);
+  return response.data;
 };

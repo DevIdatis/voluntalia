@@ -177,7 +177,7 @@ const Hours: React.FC = () => {
                   <div>
                     <CardTitle className="text-lg flex items-center gap-2">
                       <Clock className="h-5 w-5 text-primary" />
-                      {entry.hours.hours} {entry.hours.hours === 1 ? 'hour' : 'hours'} - {new Date(entry.week_start).toLocaleDateString()}
+                      {entry.hours} {entry.hours === 1 ? 'hour' : 'hours'} - {new Date(entry.weekStart).toLocaleDateString()}
                     </CardTitle>
                     <CardDescription className="mt-1">
                       {entry.activity && `• ${entry.activity.description || entry.activity}`}

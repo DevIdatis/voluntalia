@@ -7,17 +7,17 @@ export interface Resource {
   type: string;
   category: string;
   format: string;
-  user_id: string;
+  userId: string;
   size?: number;
   downloads: number;
-  created_at: string;
+  createdAt: string;
   tags: string;
   fileUrl?: string;
   visibility?: string;
   permissions?: string;
-  storage_path?: string;
-  resource_type_id?: string;
-  category_id?: string;
+  storagePath?: string;
+  resourceTypeId?: string;
+  categoryId?: string;
 }
 
 

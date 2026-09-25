@@ -1,19 +1,10 @@
 import { ActivityTask } from "./activity";
 
-export interface PostgresInterval {
-  years?: number;
-  months?: number;
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-}
-
 // Interface principal
 export interface WorkLog {
   id: string;
   weekStart: string;
-  hours: PostgresInterval;
+  hours: number;
   notes: string;
   status?: string;
   activityTitle?: string;
@@ -21,8 +12,8 @@ export interface WorkLog {
 }
 
 export interface CreateWorkLogDTO{
-  week_start: string; 
-  hours: string;
+  weekStart: string;
+  hours: number;
   notes: string;
   activity: ActivityTask | null;
 }

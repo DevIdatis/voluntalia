@@ -1,26 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Plus, Calendar, Users } from "lucide-react";
-import { useEffect, useState } from "react";
-import { getDashboardStats } from "@/services/dashboardService";
-import { DashboardStats } from "@/types/dashboard";
+import { useNavigate } from "react-router-dom";
+import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
+import { useAuth } from "@/contexts/AuthContext";
+import { isVolunteer } from "@/config/permissions";
 
 export const DashboardHero = () => {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { data: stats } = useDashboardStats();
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const data = await getDashboardStats();
-        setStats(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Failed to fetch dashboard stats:", error);
-      }
-    };
-
-    fetchStats();
-  }, []);
+  // Los COORDINATOR gestionan actividades en /activities; los VOLUNTEER solo
+  // pueden ver las suyas en su perfil (no hay una pantalla de "unirse" todavía).
+  const activitiesDestination = isVolunteer(user?.role) ? "/profile" : "/activities";
 
   return (
     <div className="bg-gradient-soft py-12">
@@ -35,13 +28,13 @@ export const DashboardHero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-gradient-primary hover:shadow-hover transition-smooth">
+            <Button size="lg" className="bg-gradient-primary hover:shadow-hover transition-smooth" onClick={() => navigate(activitiesDestination)}>
               <Plus className="h-5 w-5 mr-2" />
-              Join New Event
+              View Activities
             </Button>
-            <Button variant="outline" size="lg" className="shadow-soft">
+            <Button variant="outline" size="lg" className="shadow-soft" onClick={() => navigate("/hours")}>
               <Calendar className="h-5 w-5 mr-2" />
-              View Schedule
+              My Hours
             </Button>
           </div>
         </div>
