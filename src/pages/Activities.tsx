@@ -21,6 +21,14 @@ import { FormModal } from '@/components/common/FormModal';
 import { ConfirmDialog } from '@/components/common/ConfirmDialog';
 import { useActivitiesPage } from '@/hooks/pages/useActivitiesPage';
 import { ManageSkillsModal } from '@/components/modals/ManageSkillsModal';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 
 export default function Activities() {
   const [skillsModalOpen, setSkillsModalOpen] = useState(false);
@@ -28,9 +36,17 @@ export default function Activities() {
     // Data
     isLoading,
     stats,
+    data: activities,
 
     // Search and filter
     searchAndFilter,
+
+    // Pagination
+    totalItems,
+    totalPages,
+    currentPage,
+    startIndex,
+    setCurrentPage,
 
     // Modals
     createModal,
@@ -119,7 +135,7 @@ export default function Activities() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {searchAndFilter.filteredData.map((activity) => (
+                {activities.map((activity) => (
                   <TableRow key={activity.id}>
                     <TableCell className="font-medium">
                       {activity.title}
@@ -174,6 +190,49 @@ export default function Activities() {
           )}
         </CardContent>
       </Card>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="mt-8 flex justify-center">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage(Math.max(1, currentPage - 1));
+                  }}
+                />
+              </PaginationItem>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <PaginationItem key={page}>
+                  <PaginationLink
+                    href="#"
+                    isActive={page === currentPage}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage(page);
+                    }}
+                  >
+                    {page}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentPage(Math.min(totalPages, currentPage + 1));
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
+
 
       {/* Create Activity Modal */}
       <FormModal

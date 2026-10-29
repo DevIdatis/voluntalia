@@ -10,6 +10,7 @@ import { useConfirmDialog } from '@/hooks/common/useConfirmDialog';
 import { useToast } from '@/hooks/use-toast';
 import { ActivityTask } from '@/types/activity';
 import { Clock, CheckCircle, FileText } from 'lucide-react';
+const ACTIVITIES_PER_PAGE = 8;
 
 interface ActivityFormData {
   name: string;
@@ -34,8 +35,17 @@ export const useActivitiesPage = () => {
   const searchAndFilter = useSearchAndFilter({
     data: activities,
     searchFields: ['title', 'description'] as (keyof ActivityTask)[],
-    itemsPerPage: 10,
+    itemsPerPage: ACTIVITIES_PER_PAGE,
   });
+
+  //Recalculate pagination for final filtered data
+  const totalFinalItems = searchAndFilter.filteredData.length;
+  const totalFinalPages = Math.ceil(totalFinalItems / ACTIVITIES_PER_PAGE);
+  const startIndex = (searchAndFilter.currentPage - 1) * ACTIVITIES_PER_PAGE;
+  const finalPaginatedActivities = searchAndFilter.filteredData.slice(
+    startIndex,
+    startIndex + ACTIVITIES_PER_PAGE
+  );
 
   // Modals
   const createModal = useModal();
@@ -184,6 +194,15 @@ export const useActivitiesPage = () => {
 
     // Search and filter
     searchAndFilter,
+
+    // Pagination
+    data: finalPaginatedActivities,
+    totalItems: totalFinalItems,
+    totalPages: totalFinalPages,
+    currentPage: searchAndFilter.currentPage,
+    startIndex,
+    setCurrentPage: searchAndFilter.setCurrentPage,
+    
 
     // Modals
     createModal,
