@@ -6,8 +6,10 @@ import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { ROUTE_PERMISSIONS, isVolunteer } from "@/config/permissions";
 import { canAccessRoute } from "@/lib/permissions";
+import { useTranslation } from "react-i18next";
 
 export const Navigation = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const { logout, user } = useAuth();
@@ -17,14 +19,14 @@ export const Navigation = () => {
   const src_voluntalia_logo = "public/voluntalia_thumbnail_" + localStorage.getItem('theme') + ".png";
 
   const navItems = useMemo(() => [
-    { name: "Dashboard", href: "/", icon: Heart, roles: ROUTE_PERMISSIONS.DASHBOARD },
-    { name: "Volunteers", href: "/volunteers", icon: Users, roles: ROUTE_PERMISSIONS.VOLUNTEERS },
-    { name: "Activities", href: "/activities", icon: Activity, roles: ROUTE_PERMISSIONS.ACTIVITIES },
-    { name: "Hours", href: "/hours", icon: Clock, roles: ROUTE_PERMISSIONS.HOURS },
-    { name: "Resources", href: "/resources", icon: FileText, roles: ROUTE_PERMISSIONS.RESOURCES },
-    { name: "Notifications", href: "/notifications", icon: Bell, roles: ROUTE_PERMISSIONS.NOTIFICATIONS },
-    { name: "Settings", href: "/settings", icon: Settings, roles: ROUTE_PERMISSIONS.SETTINGS },
-  ], []);
+    { name: t("nav.dashboard"), href: "/", icon: Heart, roles: ROUTE_PERMISSIONS.DASHBOARD },
+    { name: t("nav.volunteers"), href: "/volunteers", icon: Users, roles: ROUTE_PERMISSIONS.VOLUNTEERS },
+    { name: t("nav.activities"), href: "/activities", icon: Activity, roles: ROUTE_PERMISSIONS.ACTIVITIES },
+    { name: t("nav.hours"), href: "/hours", icon: Clock, roles: ROUTE_PERMISSIONS.HOURS },
+    { name: t("nav.resources"), href: "/resources", icon: FileText, roles: ROUTE_PERMISSIONS.RESOURCES },
+    { name: t("nav.Notifications"), href: "/notifications", icon: Bell, roles: ROUTE_PERMISSIONS.NOTIFICATIONS },
+    { name: t("nav.settings"), href: "/settings", icon: Settings, roles: ROUTE_PERMISSIONS.SETTINGS },
+  ], [t]);
 
   const allowedNavItems = useMemo(() => navItems.filter(item => 
     canAccessRoute(user, item.roles)
@@ -117,7 +119,7 @@ export const Navigation = () => {
             >
               <Users className="h-4 w-4 mr-2" />
               {/* VOLUNTEER: visible at lg, COORDINATOR: visible at xl, others: visible at lg */}
-              <span className={`hidden ${isVolunteer(user?.role) ? 'lg:inline' :  'xl:inline'}`}>Profile</span>
+              <span className={`hidden ${isVolunteer(user?.role) ? 'lg:inline' :  'xl:inline'}`}>{t("common.profile")}</span>
             </Button>
             <Button 
               variant="ghost" 
@@ -126,7 +128,7 @@ export const Navigation = () => {
               className="text-red-600 hover:text-red-700"
             >
               <LogOut className="h-4 w-4 mr-2" />
-              <span className="hidden lg:inline">Logout</span>
+              <span className="hidden lg:inline">{t("common.logout")}</span>
             </Button>
           </div>
 

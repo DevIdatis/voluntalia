@@ -1,4 +1,20 @@
 {
+    "common": {
+        "profile": "Perfil",
+        "logout": "Cerrar sesión",
+        "login": "Iniciar sesión"
+    },
+
+    "nav": {
+        "dashboard": "Panel",
+        "volunteers": "Voluntarios",
+        "activities": "Actividades",
+        "hours": "Horas",
+        "resources": "Recursos",
+        "Notifications": "Notificaciones",
+        "settings": "Configuración"
+    },
+
     "dashboard": {
         "hero": {
             "title": "Bienvenido al Portal de Voluntariado VoluntALIA"

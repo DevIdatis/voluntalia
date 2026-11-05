@@ -1,4 +1,20 @@
-{
+{   
+    "common": {
+        "profile": "Profile",
+        "logout": "Logout",
+        "login": "Login"
+    },
+
+    "nav": {
+        "dashboard": "Dashboard",
+        "volunteers": "Volunteers",
+        "activities": "Activities",
+        "hours": "Hours",
+        "resources": "Resources",
+        "Notifications": "Notifications",
+        "settings": "Settings"
+    },
+    
     "dashboard": {
         "hero": {
             "title": "Welcome to VoluntALIA Volunteer Portal"
