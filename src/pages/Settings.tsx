@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Bell, Palette, Save, KeyRound } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { supportedLanguages } from "@/i18n";
+import { supportedLanguages, languageOptions } from "@/i18n";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -289,8 +289,13 @@ const Settings = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="en">English</SelectItem>
-                        <SelectItem value="es">Spanish</SelectItem>
+                        { languageOptions.map((option) => 
+                          (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          )
+                        )}
                         {/* <SelectItem value="fr">French</SelectItem> */}
                         {/* <SelectItem value="de">German</SelectItem> */}
                       </SelectContent>

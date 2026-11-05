@@ -23,4 +23,8 @@ i18n
 export default i18n;
 export const supportedLanguages = ["en", "es"];
 export type SupportedLanguage = (typeof supportedLanguages)[number];
+export const languageOptions = [
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+] as const;
 
