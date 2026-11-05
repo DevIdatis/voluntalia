@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
 import { useAuth } from "@/contexts/AuthContext";
 import { isVolunteer } from "@/config/permissions";
+import { useTranslation } from "react-i18next";
 
 export const DashboardHero = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { data: stats } = useDashboardStats();
+  const { t } = useTranslation();
 
   // Los COORDINATOR gestionan actividades en /activities; los VOLUNTEER solo
   // pueden ver las suyas en su perfil (no hay una pantalla de "unirse" todavía).
@@ -20,7 +22,7 @@ export const DashboardHero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            Welcome to VoluntALIA Volunteer Portal
+            {t("dashboard.hero.title")}
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Empowering communities through organized volunteer efforts.
