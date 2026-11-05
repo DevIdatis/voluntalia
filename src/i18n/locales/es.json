@@ -17,7 +17,17 @@
 
     "dashboard": {
         "hero": {
-            "title": "Bienvenido al Portal de Voluntariado VoluntALIA"
+            "title": "Bienvenido al Portal de Voluntariado VoluntALIA",
+            "description": "Empodera a las comunidades mediante iniciativas de voluntariado organizado. Haz un seguimiento de tu impacto, conecta con otras personas y marca la diferencia.",
+            "buttons": {
+                "viewActivities": "Ver Actividades",
+                "viewHours": "Mis Horas"
+            },
+            "stats": {
+                "totalVolunteers": "Voluntarios Totales",
+                "activeEvents": "Eventos Activos",
+                "hoursThisMonth": "Horas Este Mes"
+            }
         }
     }
 }

@@ -25,18 +25,17 @@ export const DashboardHero = () => {
             {t("dashboard.hero.title")}
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Empowering communities through organized volunteer efforts.
-            Track your impact, connect with others, and make a difference.
+            {t("dashboard.hero.description")}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="bg-gradient-primary hover:shadow-hover transition-smooth" onClick={() => navigate(activitiesDestination)}>
               <Plus className="h-5 w-5 mr-2" />
-              View Activities
+              {t("dashboard.hero.buttons.viewActivities")}
             </Button>
             <Button variant="outline" size="lg" className="shadow-soft" onClick={() => navigate("/hours")}>
               <Calendar className="h-5 w-5 mr-2" />
-              My Hours
+              {t("dashboard.hero.buttons.viewHours")}
             </Button>
           </div>
         </div>
@@ -48,7 +47,7 @@ export const DashboardHero = () => {
                 <Users className="h-6 w-6 text-soft-blue" />
               </div>
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Total Volunteers</p>
+                <p className="text-sm font-medium text-muted-foreground">{t("dashboard.hero.stats.totalVolunteers")}</p>
                 <p className="text-2xl font-bold text-foreground">{stats?.totalVolunteers || 0}</p>
               </div>
             </div>
@@ -60,7 +59,7 @@ export const DashboardHero = () => {
                 <Calendar className="h-6 w-6 text-soft-green" />
               </div>
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Active Events</p>
+                <p className="text-sm font-medium text-muted-foreground">{t("dashboard.hero.stats.activeEvents")}</p>
                 <p className="text-2xl font-bold text-foreground">{stats?.activeActivities || 0}</p>
               </div>
             </div>
@@ -72,7 +71,7 @@ export const DashboardHero = () => {
                 <Plus className="h-6 w-6 text-amber-600" />
               </div>
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Hours This Month</p>
+                <p className="text-sm font-medium text-muted-foreground">{t("dashboard.hero.stats.hoursThisMonth")}</p>
                 <p className="text-2xl font-bold text-foreground">{stats?.hoursThisMonth || 0}</p>
               </div>
             </div>

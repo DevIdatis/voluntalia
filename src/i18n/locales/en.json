@@ -17,7 +17,17 @@
     
     "dashboard": {
         "hero": {
-            "title": "Welcome to VoluntALIA Volunteer Portal"
+            "title": "Welcome to VoluntALIA Volunteer Portal",
+            "description": "Empowering communities through organized volunteer efforts. Track your impact, connect with others, and make a difference.",
+             "buttons": {
+                "viewActivities": "View Activities",
+                "viewHours": "My Hours"
+            },
+            "stats": {
+                "totalVolunteers": "Total Volunteers",
+                "activeEvents": "Active Events",
+                "hoursThisMonth": "Hours This Month"
+            }
         }
     }
 }
