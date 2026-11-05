@@ -29,5 +29,9 @@
                 "hoursThisMonth": "Horas Este Mes"
             }
         }
+    },
+
+    "footer": {
+        "copyright": "© {{year}} Organización IDATIS. Empoderando a las comunidades a través del voluntariado."
     }
 }

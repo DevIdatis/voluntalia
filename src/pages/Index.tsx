@@ -1,8 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { DashboardHero } from "@/components/DashboardHero";
 import { DashboardContent } from "@/components/DashboardContent";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   return (
     <div className="min-h-screen bg-background">
@@ -17,7 +19,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-muted-foreground">
-              © {currentYear} IDATIS Organization. Empowering communities through volunteer service.
+              {t("footer.copyright", { year: currentYear })}
             </p>
           </div>
         </div>
