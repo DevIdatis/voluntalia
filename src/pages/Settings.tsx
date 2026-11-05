@@ -15,6 +15,8 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Bell, Palette, Save, KeyRound } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { supportedLanguages } from "@/i18n";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -34,11 +36,18 @@ const Settings = () => {
     updates: false,
   });
 
+  const { t, i18n } = useTranslation();
+
   const [appearance, setAppearance] = useState({
-    language: "en",
+    language: i18n.resolvedLanguage ?? "en",
     timezone: "America/New_York",
     dateFormat: "MM/DD/YYYY",
   });
+
+  const handleLanguageChange = (value: string) => {
+    setAppearance((prev) => ({ ...prev, language: value }));
+    i18n.changeLanguage(value);
+  }
 
   // Sincroniza el formulario local cuando llegan las preferencias reales del backend
   useEffect(() => {
@@ -50,8 +59,13 @@ const Settings = () => {
       events: preferences.eventNotifications,
       updates: preferences.updateNotifications,
     });
+
+    const savedLanguage = (supportedLanguages as readonly string[]).includes(preferences.language)
+      ? preferences.language
+      : "en";
+
     setAppearance({
-      language: preferences.language,
+      language: savedLanguage,
       timezone: preferences.timezone,
       dateFormat: preferences.dateFormat,
     });
@@ -269,7 +283,7 @@ const Settings = () => {
                     <Label htmlFor="language">Language</Label>
                     <Select
                       value={appearance.language}
-                      onValueChange={(value) => setAppearance((prev) => ({ ...prev, language: value }))}
+                      onValueChange={handleLanguageChange}
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -277,8 +291,8 @@ const Settings = () => {
                       <SelectContent>
                         <SelectItem value="en">English</SelectItem>
                         <SelectItem value="es">Spanish</SelectItem>
-                        <SelectItem value="fr">French</SelectItem>
-                        <SelectItem value="de">German</SelectItem>
+                        {/* <SelectItem value="fr">French</SelectItem> */}
+                        {/* <SelectItem value="de">German</SelectItem> */}
                       </SelectContent>
                     </Select>
                   </div>
