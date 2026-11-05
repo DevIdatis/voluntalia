@@ -8,12 +8,14 @@ import { useWorkLog } from "@/hooks/workLog/useWorkLog";
 import { useAuth } from "@/contexts/AuthContext";
 import { isVolunteer } from "@/config/permissions";
 import { formatDate } from "@/lib/formatDate";
+import { useTranslation } from "react-i18next";
 
 export const DashboardContent = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { data: activities = [] } = useActivities();
   const { data: worklog = [] } = useWorkLog();
+  const { t } = useTranslation();
 
   // Página de "gestionar/ver actividades" según el rol: los COORDINATOR administran
   // actividades en /activities; los VOLUNTEER solo pueden ver las suyas en su perfil.
@@ -37,15 +39,15 @@ export const DashboardContent = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Clock className="h-5 w-5 text-soft-blue" />
-              <span>Upcoming Activities</span>
+              <span>{t("dashboard.content.leftCard.title")}</span>
             </CardTitle>
             <CardDescription>
-              Activities coming up that you can be part of
+              {t("dashboard.content.leftCard.description")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {upcomingActivities.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No upcoming activities scheduled.</p>
+              <p className="text-sm text-muted-foreground">{t("dashboard.content.leftCard.nonContent")}</p>
             ) : (
               upcomingActivities.map((activity) => (
                 <div key={activity.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
@@ -62,7 +64,7 @@ export const DashboardContent = () => {
                     )}
                     <div className="flex items-center space-x-2">
                       <Users className="h-4 w-4" />
-                      <span>{activity.volunteers?.length ?? 0} volunteers signed up</span>
+                      <span>{activity.volunteers?.length ?? 0} {t("dashboard.content.leftCard.content")}</span>
                     </div>
                   </div>
                 </div>
@@ -76,22 +78,22 @@ export const DashboardContent = () => {
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <CheckCircle className="h-5 w-5 text-soft-green" />
-              <span>Recent Activity</span>
+              <span>{t("dashboard.content.rightCard.title")}</span>
             </CardTitle>
             <CardDescription>
-              Your latest logged volunteer hours
+              {t("dashboard.content.rightCard.description")}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {recentWorklog.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No hours logged yet.</p>
+              <p className="text-sm text-muted-foreground">{t("dashboard.content.rightCard.nonContent")}</p>
             ) : (
               recentWorklog.map((entry) => (
                 <div key={entry.id} className="p-4 bg-gradient-soft rounded-lg border border-border">
                   <div className="flex justify-between items-start">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
-                        <Badge variant="default">Logged</Badge>
+                        <Badge variant="default">{t("common.logged")}</Badge>
                         <span className="font-medium text-foreground">
                           {entry.activityTitle || entry.activity?.title || entry.notes}
                         </span>
@@ -100,7 +102,7 @@ export const DashboardContent = () => {
                     </div>
                     <div className="text-right">
                       <p className="text-lg font-bold text-soft-green">+{entry.hours ?? 0}h</p>
-                      <p className="text-xs text-muted-foreground">volunteer hours</p>
+                      <p className="text-xs text-muted-foreground">{t("common.volunteersHours")}</p>
                     </div>
                   </div>
                 </div>
@@ -109,14 +111,14 @@ export const DashboardContent = () => {
 
             {/* Quick Actions */}
             <div className="pt-4 border-t border-border">
-              <h5 className="font-medium text-foreground mb-3">Quick Actions</h5>
+              <h5 className="font-medium text-foreground mb-3">{t("common.quickActions")}</h5>
               <div className="grid grid-cols-2 gap-3">
                 <Button variant="outline" size="sm" className="shadow-soft" onClick={() => navigate(activitiesDestination)}>
-                  View Activities
+                  {t("dashboard.hero.buttons.viewActivities")}
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
                 <Button variant="outline" size="sm" className="shadow-soft" onClick={() => navigate("/hours")}>
-                  My Hours
+                  {t("dashboard.hero.buttons.viewHours")}
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </Button>
               </div>

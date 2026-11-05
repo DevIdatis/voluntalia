@@ -2,7 +2,10 @@
     "common": {
         "profile": "Perfil",
         "logout": "Cerrar sesión",
-        "login": "Iniciar sesión"
+        "login": "Iniciar sesión",
+        "logged": "Registrado",
+        "volunteersHours": "Horas de Voluntarios",
+        "quickActions": "Acciones Rápidas"
     },
 
     "nav": {
@@ -27,6 +30,24 @@
                 "totalVolunteers": "Voluntarios Totales",
                 "activeEvents": "Eventos Activos",
                 "hoursThisMonth": "Horas Este Mes"
+            }
+        },
+
+        "content": {
+            "leftCard": {
+                "title": "Próximas Actividades",
+                "description": "Actividades que vienen y en las que puedes participar",
+                "nonContent": "No hay actividades próximas programadas.",
+                "content": "voluntarios inscritos"
+            },
+
+            "rightCard": {
+                "title": "Actividad Reciente",
+                "description": "Tus últimas horas de voluntariado registradas",
+                "nonContent": "Aún no se han registrado horas.",
+                "looged": {
+                    
+                }
             }
         }
     },

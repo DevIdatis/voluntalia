@@ -2,7 +2,10 @@
     "common": {
         "profile": "Profile",
         "logout": "Logout",
-        "login": "Login"
+        "login": "Login",
+        "logged": "Logged",
+        "volunteersHours": "Volunteers Hours",
+        "quickActions": "Quick Actions"
     },
 
     "nav": {
@@ -27,6 +30,24 @@
                 "totalVolunteers": "Total Volunteers",
                 "activeEvents": "Active Events",
                 "hoursThisMonth": "Hours This Month"
+            }
+        },
+
+        "content": {
+            "leftCard": {
+                "title": "Upcoming Activities",
+                "description": "Activities coming up that you can be part of",
+                "nonContent": "No upcoming activities scheduled.",
+                "content": "volunteers signed up"
+            },
+
+            "rightCard": {
+                "title": "Recent Activity",
+                "description": "Your latest logged volunteer hours",
+                "nonContent": "No hours logged yet.",
+                "looged": {
+                    
+                }
             }
         }
     },
