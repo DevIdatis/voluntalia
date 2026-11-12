@@ -27,6 +27,7 @@ import {
 import { User } from '@/types/user';
 import formatDate from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
+import { useTranslation } from "react-i18next";
 
 interface VolunteerCardProps {
   volunteer: User;
@@ -45,6 +46,7 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
   onContact,
   onDelete,
 }) => {
+  const { t } = useTranslation();
   return (
     <Card className="shadow-card hover:shadow-hover transition-smooth">
       <CardHeader>
@@ -72,7 +74,7 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
                   : 'bg-destructive/10 text-destructive border-destructive/20'
               )}
             >
-              {volunteer.isActive ? 'Active' : 'Inactive'}
+              {volunteer.isActive ? t('common.active') : t('common.inactive')}
             </Badge>
           </div>
           <div className="flex items-center space-x-2">
@@ -85,18 +87,18 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => onContact(volunteer, 'email')}>
                   <Mail className="h-4 w-4 mr-2" />
-                  Send Email
+                  {t("common.sendEmail")}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => onContact(volunteer, 'phone')}>
                   <Phone className="h-4 w-4 mr-2" />
-                  Call
+                  {t("common.call")}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => onEditVolunteerProfile(volunteer)}
                 >
                   <Edit className="h-4 w-4 mr-2" />
-                  Edit Profile
+                  {t("common.editProfile")}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => onDelete(volunteer.id)}
@@ -109,12 +111,12 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
                   {volunteer.isActive ? (
                     <>
                       <Trash2 className="h-4 w-4 mr-2" />
-                      Deactivate
+                      {t("common.desactivate")}
                     </>
                   ) : (
                     <>
                       <CheckCircle className="h-4 w-4 mr-2" />
-                      Activate
+                      {t("common.activate")}
                     </>
                   )}
                 </DropdownMenuItem>
@@ -126,13 +128,13 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
       <CardContent>
         <div className="space-y-4">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Role:</span>
+            <span className="text-muted-foreground">{t("common.role")}:</span>
             <span className="font-medium capitalize">
-              {volunteer.role || 'VOLUNTEER'}
+              { t(`common.roles.${volunteer.role}`) || t("common.volunteer") }
             </span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Joined:</span>
+            <span className="text-muted-foreground">{t("common.joined")}:</span>
             <span className="font-medium">
               {formatDate(volunteer.createdAt)}
             </span>
@@ -143,11 +145,11 @@ export const VolunteerCard: React.FC<VolunteerCardProps> = ({
               className="flex-1"
               onClick={() => onViewProfile(volunteer)}
             >
-              View Profile
+              {t("common.viewProfile")}
             </Button>
             <Button onClick={() => onManageActivities(volunteer)}>
               <Activity className="h-4 w-4 mr-2" />
-              Activities
+              {t("common.activities")}
             </Button>
           </div>
         </div>

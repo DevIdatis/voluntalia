@@ -19,7 +19,23 @@
         "recent": "Last 3 months",
         "clearFilters": "Clear Filters",
         "showing": "Showing",
-        "of": "of"
+        "of": "of",
+        "active": "Active",
+        "inactive": "Inactive",
+        "sendEmail": "Send Email",
+        "call": "Call",
+        "editProfile": "Edit Profile",
+        "desactivate": "Deactivate",
+        "activate": "Activate",
+        "viewProfile": "View Profile",
+        "activities": "Activities",
+        "role": "Role",
+        "joined": "Joined",
+        "roles": {
+            "VOLUNTEER": "Volunteer",
+            "COORDINATOR": "Coordinator",
+            "ADMIN": "Administrator"
+        }
     },
 
     "nav": {

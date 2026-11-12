@@ -19,7 +19,23 @@
         "recent": "Últimos 3 meses",
         "clearFilters": "Limpiar Filtros",
         "showing": "Mostrando",
-        "of": "de"
+        "of": "de",
+        "active": "Activo",
+        "inactive": "Inactivo",
+        "sendEmail": "Enviar Correo",
+        "call": "Llamar",
+        "editProfile": "Editar Perfil",
+        "desactivate": "Desactivar",
+        "activate": "Activar",
+        "viewProfile": "Ver Perfil",
+        "activities": "Actividades",
+        "role": "Rol",
+        "joined": "Se unió",
+        "roles": {
+            "VOLUNTEER": "Voluntario",
+            "COORDINATOR": "Coordinador",
+            "ADMIN": "Administrador"
+        }
     },
 
     "nav": {
