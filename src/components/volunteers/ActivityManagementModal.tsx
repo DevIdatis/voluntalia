@@ -6,6 +6,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Trash2 } from "lucide-react";
 import { User } from "@/types/user";
 import { ActivityTask } from "@/types/activity";
+import { useTranslation } from "react-i18next";
 
 interface ActivityManagementModalProps {
   isOpen: boolean;
@@ -28,18 +29,19 @@ export const ActivityManagementModal: React.FC<ActivityManagementModalProps> = (
   onAssignActivity,
   onRemoveActivity
 }) => {
+  const { t } = useTranslation();
   if (!volunteer) return null;
 
   const availableActivities = activities.filter(a =>
     a.title.toLowerCase().includes(searchActivity.toLowerCase()) &&
     !volunteer.volunteerActivities?.some(va => va.id === a.id)
   );
-
+  
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Activities for {volunteer.name}</DialogTitle>
+          <DialogTitle>{t("volunteers.modal.activities.title")} {volunteer.name}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-3">
@@ -63,19 +65,19 @@ export const ActivityManagementModal: React.FC<ActivityManagementModalProps> = (
               </div>
             ))
           ) : (
-            <p className="text-sm text-muted-foreground">No activities assigned yet.</p>
+            <p className="text-sm text-muted-foreground">{t("volunteers.modal.activities.noActivities")}</p>
           )}
 
           <div>
-            <Label>Assign new activity</Label>
+            <Label>{t("volunteers.modal.activities.new")}</Label>
             <Command className="rounded-lg border shadow-sm">
               <CommandInput
-                placeholder="Search activity…"
+                placeholder={t("volunteers.modal.activities.searchPlaceholder")}
                 value={searchActivity}
                 onValueChange={onSearchActivityChange}
               />
               <CommandList>
-                <CommandEmpty>No activities found.</CommandEmpty>
+                <CommandEmpty>{t("volunteers.modal.activities.emptyActivities")}</CommandEmpty>
                 <CommandGroup>
                   {availableActivities
                     .slice(0, 5)
@@ -95,7 +97,7 @@ export const ActivityManagementModal: React.FC<ActivityManagementModalProps> = (
 
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>
-            Close
+            {t("volunteers.modal.activities.close")}
           </Button>
         </DialogFooter>
       </DialogContent>

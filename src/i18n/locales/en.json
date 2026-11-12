@@ -165,6 +165,16 @@
                     "adding": "Adding...",
                     "updating": "Updating..."
                 }
+            },
+
+            "activities": {
+                "title": "Activities for",
+                "description": "No activities assigned yet.",
+                "new": "Assign new activity",
+                "noActivities": "No activities assigned yet.",
+                "emptyActivities": "No activities found.",
+                "searchPlaceholder": "Search activity…",
+                "close": "Close"
             }
         }
     },
