@@ -102,7 +102,11 @@
             "advancedFilterButton": "Advanced Filters",
             "addVolunteerButton": "Add Volunteer"
         },
-        "loadError": "Error loading volunteers."
+        "loadError": "Error loading volunteers.",
+        "emptyState": {
+            "title": "No volunteers found",
+            "description": "Try adjusting your search or filter criteria."
+        }
     },
 
     "footer": {

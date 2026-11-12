@@ -254,9 +254,9 @@ const Volunteers: React.FC = () => {
         <Card className="shadow-card">
           <CardContent className="p-8 text-center">
             <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-lg font-medium mb-2">No volunteers found</p>
+            <p className="text-lg font-medium mb-2">{t("volunteers.emptyState.title")}</p>
             <p className="text-muted-foreground">
-              Try adjusting your search or filter criteria
+              {t("volunteers.emptyState.description")}
             </p>
           </CardContent>
         </Card>

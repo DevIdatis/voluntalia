@@ -102,7 +102,11 @@
             "advancedFilterButton": "Filtros Avanzados",
             "addVolunteerButton": "Agregar Voluntario"
         },
-        "loadError": "Error al cargar los voluntarios."
+        "loadError": "Error al cargar los voluntarios.",
+        "emptyState": {
+            "title": "No se encontraron voluntarios",
+            "description": "Intenta ajustar tu búsqueda o criterios de filtro."
+        }
     },
 
     "footer": {
