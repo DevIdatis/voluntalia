@@ -111,6 +111,61 @@
         "emptyState": {
             "title": "No volunteers found",
             "description": "Try adjusting your search or filter criteria."
+        },
+        "modal": {
+            "add":{
+                "title": "Add New Volunteer",
+                "description": "Fill in the details below to add a new volunteer to the community."
+            },
+            "edit": {
+                "title": "Edit Volunteer",
+                "description": "Update the volunteer information below."
+            },
+            "form": {
+                "personalInfo": {
+                    "title": "Personal Information",
+                    "name": "First Name",
+                    "lastName": "Last Name",
+                    "email": "Email",
+                    "phone": "Phone Number",
+                    "country": "Country",
+                    "city": "City",
+                    "role": "Role",
+                    "skills": "Skills",
+                    "submitButton": "Add Volunteer",
+                    "cancelButton": "Cancel"
+                },
+                "emergencyContact": {
+                    "title": "Emergency Contact",
+                    "name": "Emergency Contact Name",
+                    "phone": "Emergency Contact Phone"
+                },
+                "skillsAndInterests": {
+                    "title": "Skills and Interests",
+                    "label": "Search Skills",
+                    "searchPlaceholder": "Type to search for skills..."
+                },
+                "aditionalInfo": {
+                    "title": "Additional Information",
+                    "label": "Availability",
+                    "placeholder": "Select availability",
+                    "options": {
+                        "weekdays": "Weekdays",
+                        "weekends": "Weekends",
+                        "evenings": "Evenings",
+                        "flexible": "Flexible"
+                    },
+                    "motivation": "Why do you want to volunteer?",
+                    "motivationDescription": "Tell us about your motivation to volunteer..."   
+                },
+                "buttons": {
+                    "submit": "Add Volunteer",
+                    "cancel": "Cancel",
+                    "edit": "Save Changes",
+                    "adding": "Adding...",
+                    "updating": "Updating..."
+                }
+            }
         }
     },
 

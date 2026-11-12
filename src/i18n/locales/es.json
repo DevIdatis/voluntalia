@@ -111,6 +111,61 @@
         "emptyState": {
             "title": "No se encontraron voluntarios",
             "description": "Intenta ajustar tu búsqueda o criterios de filtro."
+        },
+        "modal": {
+            "add":{
+                "title": "Agregar Nuevo Voluntario",
+                "description": "Completa los detalles a continuación para agregar un nuevo voluntario a la comunidad."
+            },
+            "edit": {
+                "title": "Editar Voluntario",
+                "description": "Actualiza la información del voluntario a continuación."
+            },
+            "form": {
+                "personalInfo": {
+                    "title": "Información Personal",
+                    "name": "Nombre",
+                    "lastName": "Apellido",
+                    "email": "Correo Electrónico",
+                    "phone": "Número de Teléfono",
+                    "country": "País",
+                    "city": "Ciudad",
+                    "role": "Rol",
+                    "skills": "Habilidades",
+                    "submitButton": "Agregar Voluntario",
+                    "cancelButton": "Cancelar"
+                },
+                 "emergencyContact": {
+                    "title": "Contacto de Emergencia",
+                    "name": "Nombre del Contacto de Emergencia",
+                    "phone": "Teléfono del Contacto de Emergencia"
+                },
+                "skillsAndInterests": {
+                    "title": "Habilidades y Intereses",
+                    "label": "Buscar Habilidades",
+                    "searchPlaceholder": "Escribe para buscar habilidades..."
+                },
+                 "aditionalInfo": {
+                    "title": "Información Adicional",
+                    "label": "Disponibilidad",
+                    "placeholder": "Seleccionar disponibilidad",
+                    "options": {
+                        "weekdays": "Días de la semana",
+                        "weekends": "Fines de semana",
+                        "evenings": "Tardes",
+                        "flexible": "Flexible"
+                    },
+                    "motivation": "¿Por qué quieres ser voluntario?",
+                    "motivationDescription": "Cuéntanos sobre tu motivación para ser voluntario..."
+                },
+                "buttons": {
+                    "submit": "Agregar Voluntario",
+                    "cancel": "Cancelar",
+                    "edit": "Guardar Cambios",
+                    "adding": "Agregando...",
+                    "updating": "Actualizando..."
+                }
+            }
         }
     },
 

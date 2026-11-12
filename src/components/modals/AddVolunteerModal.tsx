@@ -25,6 +25,7 @@ import { useCreateUser } from '@/hooks/user/useCreateUser';
 import { useUpdateUser } from '@/hooks/user/useUpdateUser';
 import { CreateUserDTO, User } from '@/types/user';
 import { useSkills } from '@/hooks/skill/useSkills';
+import { useTranslation } from "react-i18next";
 
 interface AddVolunteerModalProps {
   open: boolean;
@@ -219,27 +220,29 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
     setSkillSearch('');
   };
 
+  const { t } = useTranslation();
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {isEdit ? 'Edit Volunteer' : 'Add New Volunteer'}
+            {isEdit ? t("volunteers.modal.edit.title") : t("volunteers.modal.add.title")}
           </DialogTitle>
           <DialogDescription>
             {isEdit
-              ? 'Update the volunteer information below.'
-              : 'Add a new volunteer to the VoluntALIA community. Fill out their information below.'}
+              ? t("volunteers.modal.edit.description")
+              : t("volunteers.modal.add.description")}
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Personal Information</h3>
+            <h3 className="text-lg font-semibold">{t("volunteers.modal.form.personalInfo.title")}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">First Name *</Label>
+                <Label htmlFor="firstName">{t("volunteers.modal.form.personalInfo.name")} *</Label>
                 <Input
                   id="firstName"
                   value={formData.firstName}
@@ -250,7 +253,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name *</Label>
+                <Label htmlFor="lastName">{t("volunteers.modal.form.personalInfo.lastName")} *</Label>
                 <Input
                   id="lastName"
                   value={formData.lastName}
@@ -264,7 +267,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
+                <Label htmlFor="email">{t("volunteers.modal.form.personalInfo.email")} *</Label>
                 <Input
                   id="email"
                   type="email"
@@ -278,7 +281,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number *</Label>
+                <Label htmlFor="phone">{t("volunteers.modal.form.personalInfo.phone")} *</Label>
                 <Input
                   id="phone"
                   value={formData.phone}
@@ -292,7 +295,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="country">Country *</Label>
+                <Label htmlFor="country">{t("volunteers.modal.form.personalInfo.country")} *</Label>
                 <Input
                   id="country"
                   type="text"
@@ -304,7 +307,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="city">City *</Label>
+                <Label htmlFor="city">{t("volunteers.modal.form.personalInfo.city")} *</Label>
                 <Input
                   id="city"
                   value={formData.city}
@@ -319,11 +322,11 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
 
           {/* Emergency Contact */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Emergency Contact</h3>
+            <h3 className="text-lg font-semibold">{t("volunteers.modal.form.emergencyContact.title")}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="emergency_contact">
-                  Emergency Contact Name
+                  {t("volunteers.modal.form.emergencyContact.name")}
                 </Label>
                 <Input
                   id="emergency_contact"
@@ -337,7 +340,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="emergency_phone">Emergency Contact Phone</Label>
+                <Label htmlFor="emergency_phone">{t("volunteers.modal.form.emergencyContact.phone")}</Label>
                 <Input
                   id="emergency_phone"
                   value={formData.emergency_phone}
@@ -354,15 +357,15 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
 
           {/* Skills */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Skills & Interests</h3>
+            <h3 className="text-lg font-semibold">{t("volunteers.modal.form.skillsAndInterests.title")} </h3>
             <div className="space-y-2">
-              <Label htmlFor="skillSearch">Search Skills</Label>
+              <Label htmlFor="skillSearch">{t("volunteers.modal.form.skillsAndInterests.label")}</Label>
               <div className="relative">
                 <Input
                   id="skillSearch"
                   value={skillSearch}
                   onChange={(e) => setSkillSearch(e.target.value)}
-                  placeholder="Type to search skills..."
+                  placeholder={t("volunteers.modal.form.skillsAndInterests.searchPlaceholder")}
                 />
                 {skillSearch && filteredSkills.length > 0 && (
                   <div className="absolute z-50 w-full mt-1 bg-popover border rounded-md shadow-lg max-h-60 overflow-y-auto">
@@ -406,9 +409,9 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
 
           {/* Additional Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Additional Information</h3>
+            <h3 className="text-lg font-semibold">{t("volunteers.modal.form.aditionalInfo.title")}</h3>
             <div className="space-y-2">
-              <Label htmlFor="availability">Availability</Label>
+              <Label htmlFor="availability">{t("volunteers.modal.form.aditionalInfo.label")}</Label>
               <Select
                 value={formData.availability}
                 onValueChange={(value) =>
@@ -416,25 +419,25 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
                 }
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select availability" />
+                  <SelectValue placeholder={t("volunteers.modal.form.aditionalInfo.placeholder")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="weekdays">Weekdays</SelectItem>
-                  <SelectItem value="weekends">Weekends</SelectItem>
-                  <SelectItem value="evenings">Evenings</SelectItem>
-                  <SelectItem value="flexible">Flexible</SelectItem>
+                  <SelectItem value="weekdays">{t("volunteers.modal.form.aditionalInfo.options.weekdays")}</SelectItem>
+                  <SelectItem value="weekends">{t("volunteers.modal.form.aditionalInfo.options.weekends")}</SelectItem>
+                  <SelectItem value="evenings">{t("volunteers.modal.form.aditionalInfo.options.evenings")}</SelectItem>
+                  <SelectItem value="flexible">{t("volunteers.modal.form.aditionalInfo.options.flexible")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="motivation">Why do you want to volunteer?</Label>
+              <Label htmlFor="motivation">{t("volunteers.modal.form.aditionalInfo.motivation")}</Label>
               <Textarea
                 id="motivation"
                 value={formData.motivation}
                 onChange={(e) =>
                   setFormData({ ...formData, motivation: e.target.value })
                 }
-                placeholder="Tell us about your motivation to volunteer..."
+                placeholder={t("volunteers.modal.form.aditionalInfo.motivationDescription")}
                 rows={3}
               />
             </div>
@@ -455,11 +458,11 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
             >
               {isEdit
                 ? isUpdating
-                  ? 'Updating...'
-                  : 'Update Volunteer'
+                  ? t("volunteers.modal.form.buttons.updating")
+                  : t("volunteers.modal.form.buttons.edit")
                 : isPending
-                  ? 'Adding...'
-                  : 'Add Volunteer'}
+                  ? t("volunteers.modal.form.buttons.adding")
+                  : t("volunteers.modal.form.buttons.submit")}
             </Button>
           </DialogFooter>
         </form>
