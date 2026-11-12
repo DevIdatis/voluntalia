@@ -91,7 +91,7 @@ const Volunteers: React.FC = () => {
   }
 
   if (error) {
-    return <p style={{ color: 'red' }}>Error loading volunteers</p>;
+    return <p style={{ color: 'red' }}>{t("volunteers.loadError")}</p>;
   }
 
   const filterOptions = [

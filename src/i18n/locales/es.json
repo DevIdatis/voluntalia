@@ -101,8 +101,8 @@
             },
             "advancedFilterButton": "Filtros Avanzados",
             "addVolunteerButton": "Agregar Voluntario"
-
-        }
+        },
+        "loadError": "Error al cargar los voluntarios."
     },
 
     "footer": {
