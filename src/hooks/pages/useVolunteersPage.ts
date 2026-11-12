@@ -13,8 +13,10 @@ import { useStats } from '@/hooks/common/useStats';
 import { useDashboardStats } from '@/hooks/dashboard/useDashboardStats';
 import { User } from '@/types/user';
 import { Users, Award, Clock } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 export const useVolunteersPage = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [searchActivity, setSearchActivity] = useState('');
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
@@ -109,14 +111,14 @@ export const useVolunteersPage = () => {
   const statsConfig = [
     {
       key: 'total',
-      label: 'Total Volunteers',
+      label: t("volunteers.statsGrid.total"),
       icon: Users,
       calculate: (data: User[]) => data.length,
       color: 'text-primary',
     },
     {
       key: 'active',
-      label: 'Active Volunteers',
+      label: t("volunteers.statsGrid.active"),
       icon: Award,
       calculate: (data: User[]) =>
         data.filter((u) => u.isActive === true).length,
@@ -124,14 +126,14 @@ export const useVolunteersPage = () => {
     },
     {
       key: 'hours',
-      label: 'Hours This Month',
+      label: t("volunteers.statsGrid.hours"),
       icon: Clock,
       calculate: () => dashboardStats?.hoursThisMonth ?? 0,
       color: 'text-warm-accent',
     },
     {
       key: 'new',
-      label: 'New This Month',
+      label: t("volunteers.statsGrid.new"),
       icon: Users,
       calculate: (data: User[]) => {
         const now = new Date();

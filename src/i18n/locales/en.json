@@ -54,7 +54,13 @@
 
     "volunteers": {
         "title": "Volunteers",
-        "description": "Manage and connect with our volunteer community"
+        "description": "Manage and connect with our volunteer community",
+        "statsGrid": {
+            "total": "Total Volunteers",
+            "active": "Active Volunteers",
+            "hours": "Hours This Month",
+            "new": "New This Month"
+        }
     },
 
     "footer": {
