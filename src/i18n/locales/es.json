@@ -5,7 +5,17 @@
         "login": "Iniciar sesión",
         "logged": "Registrado",
         "volunteersHours": "Horas de Voluntarios",
-        "quickActions": "Acciones Rápidas"
+        "quickActions": "Acciones Rápidas",
+        "allRoles": "Todos los Roles",
+        "admin": "Administrador",
+        "volunteer": "Voluntario",
+        "coordinator": "Coordinador",
+        "allHours": "Todas las Horas",
+        "hours": "horas",
+        "allEvents": "Todos los Eventos",
+        "event": "Eventos",
+        "allPeriods": "Todos los Periodos",
+        "recent": "Últimos 3 meses"
     },
 
     "nav": {

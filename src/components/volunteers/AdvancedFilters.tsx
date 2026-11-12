@@ -1,4 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
+
+
 
 interface AdvancedFiltersProps {
   skillFilter: string;
@@ -21,30 +24,31 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
   joinDateFilter,
   onJoinDateFilterChange
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-border">
       <Select value={skillFilter} onValueChange={onSkillFilterChange}>
         <SelectTrigger>
-          <SelectValue placeholder="Filter by Role" />
+          <SelectValue placeholder={t("volunteers.searchBar.filterPlaceholder")} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Roles</SelectItem>
-          <SelectItem value="admin">Admin</SelectItem>
-          <SelectItem value="volunteer">Volunteer</SelectItem>
-          <SelectItem value="coordinator">Coordinator</SelectItem>
+          <SelectItem value="all">{t("common.allRoles")}</SelectItem>
+          <SelectItem value="admin">{t("common.admin")}</SelectItem>
+          <SelectItem value="volunteer">{t("common.volunteer")}</SelectItem>
+          <SelectItem value="coordinator">{t("common.coordinator")}</SelectItem>
         </SelectContent>
       </Select>
 
       <Select value={hoursRange} onValueChange={onHoursRangeChange}>
         <SelectTrigger>
-          <SelectValue placeholder="Hours Range" />
+          <SelectValue placeholder={t("volunteers.searchBar.hoursRangePlaceholder")} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Hours</SelectItem>
-          <SelectItem value="0-50">0-50 hours</SelectItem>
-          <SelectItem value="51-100">51-100 hours</SelectItem>
-          <SelectItem value="101-200">101-200 hours</SelectItem>
-          <SelectItem value="201+">200+ hours</SelectItem>
+          <SelectItem value="all">{t("common.allHours")}  </SelectItem>
+          <SelectItem value="0-50">0-50 {t("common.hours")}</SelectItem>
+          <SelectItem value="51-100">51-100 {t("common.hours")}</SelectItem>
+          <SelectItem value="101-200">101-200 {t("common.hours")}</SelectItem>
+          <SelectItem value="201+">200+ {t("common.hours")}</SelectItem>
         </SelectContent>
       </Select>
 
@@ -53,10 +57,10 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
           <SelectValue placeholder="Events Range" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Events</SelectItem>
-          <SelectItem value="0-10">0-10 events</SelectItem>
-          <SelectItem value="11-20">11-20 events</SelectItem>
-          <SelectItem value="21+">20+ events</SelectItem>
+          <SelectItem value="all">{t("common.allEvents")}</SelectItem>
+          <SelectItem value="0-10">0-10 {t("common.event")}</SelectItem>
+          <SelectItem value="11-20">11-20 {t("common.event")}</SelectItem>
+          <SelectItem value="21+">20+ {t("common.event")}</SelectItem>
         </SelectContent>
       </Select>
 
@@ -65,8 +69,8 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
           <SelectValue placeholder="Join Date" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Periods</SelectItem>
-          <SelectItem value="recent">Last 3 months</SelectItem>
+          <SelectItem value="all">{t("common.allPeriods")}</SelectItem>
+          <SelectItem value="recent">{t("common.recent")}</SelectItem>
           <SelectItem value="2023">2023</SelectItem>
           <SelectItem value="2022">2022</SelectItem>
         </SelectContent>

@@ -5,7 +5,19 @@
         "login": "Login",
         "logged": "Logged",
         "volunteersHours": "Volunteers Hours",
-        "quickActions": "Quick Actions"
+        "quickActions": "Quick Actions",
+        "allRoles": "All Roles",
+        "admin": "Admin",
+        "volunteer": "Volunteer",
+        "coordinator": "Coordinator",
+        "allHours": "All Hours",
+        "hours": "hours",
+        "allEvents": "All Events",
+        "event": "Event",
+        "allPeriods": "All Periods",
+        "recent": "Last 3 months"
+
+
     },
 
     "nav": {
