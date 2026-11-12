@@ -9,13 +9,17 @@
         "allRoles": "Todos los Roles",
         "admin": "Administrador",
         "volunteer": "Voluntario",
+        "volunteers": "Voluntarios",
         "coordinator": "Coordinador",
         "allHours": "Todas las Horas",
         "hours": "horas",
         "allEvents": "Todos los Eventos",
         "event": "Eventos",
         "allPeriods": "Todos los Periodos",
-        "recent": "Últimos 3 meses"
+        "recent": "Últimos 3 meses",
+        "clearFilters": "Limpiar Filtros",
+        "showing": "Mostrando",
+        "of": "de"
     },
 
     "nav": {

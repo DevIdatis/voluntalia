@@ -159,12 +159,12 @@ const Volunteers: React.FC = () => {
       {/* Filter Summary */}
       <div className="flex items-center justify-between text-sm text-muted-foreground mb-6">
         <span>
-          Showing {startIndex + 1}-{Math.min(startIndex + 6, totalItems)} of{' '}
-          {totalItems} volunteers
+          {t("common.showing")} {startIndex + 1}-{Math.min(startIndex + 6, totalItems)} {t("common.of")}{' '}
+          {totalItems} {t("common.volunteers")}
         </span>
         {hasActiveFilters() && (
           <Button variant="ghost" size="sm" onClick={clearAllFilters}>
-            Clear Filters
+            {t("common.clearFilters")}
           </Button>
         )}
       </div>
