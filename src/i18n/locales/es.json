@@ -35,6 +35,11 @@
             "VOLUNTEER": "Voluntario",
             "COORDINATOR": "Coordinador",
             "ADMIN": "Administrador"
+        },
+        "pagination": {
+            "previous": "Atrás",
+            "next": "Siguiente",
+            "more": "Más páginas"
         }
     },
 
