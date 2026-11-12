@@ -95,9 +95,9 @@ const Volunteers: React.FC = () => {
   }
 
   const filterOptions = [
-    { value: 'all', label: 'All Status' },
-    { value: 'active', label: 'Active' },
-    { value: 'inactive', label: 'Inactive' },
+    { value: 'all', label: t("volunteers.searchBar.filterOptions.all") },
+    { value: 'active', label: t("volunteers.searchBar.filterOptions.active") },
+    { value: 'inactive', label: t("volunteers.searchBar.filterOptions.inactive") },
   ];
 
   return (
@@ -112,11 +112,11 @@ const Volunteers: React.FC = () => {
       <SearchFilterBar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        searchPlaceholder="Search volunteers by name, email, or skills..."
+        searchPlaceholder={t("volunteers.searchBar.searchPlaceholder")}
         filterValue={filters.main}
         onFilterChange={setMainFilter}
         filterOptions={filterOptions}
-        filterPlaceholder="Status"
+        filterPlaceholder={t("volunteers.searchBar.filterPlaceholder")}
         className="mb-6"
         actions={
           <div className="flex gap-2">
@@ -125,14 +125,14 @@ const Volunteers: React.FC = () => {
               onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
             >
               <Filter className="h-4 w-4 mr-2" />
-              Advanced Filters
+              {t("volunteers.searchBar.advancedFilterButton")}
             </Button>
             <Button
               onClick={() => addVolunteerModal.openModal()}
               className="bg-gradient-primary hover:shadow-hover transition-smooth"
             >
               <Plus className="h-4 w-4 mr-2" />
-              Add Volunteer
+              {t("volunteers.searchBar.addVolunteerButton")}
             </Button>
           </div>
         }

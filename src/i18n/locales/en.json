@@ -60,6 +60,18 @@
             "active": "Active Volunteers",
             "hours": "Hours This Month",
             "new": "New This Month"
+        },
+        "searchBar": {
+            "searchPlaceholder": "Search volunteers by name, email, or skills...",
+            "filterPlaceholder": "Status",
+            "filterOptions": {
+                "all": "All Status",
+                "active": "Active",
+                "inactive": "Inactive"
+            },
+            "advancedFilterButton": "Advanced Filters",
+            "addVolunteerButton": "Add Volunteer"
+
         }
     },
 

@@ -60,6 +60,18 @@
             "active": "Voluntarios Activos",
             "hours": "Horas Este Mes",
             "new": "Nuevos Este Mes"
+        },
+        "searchBar": {
+            "searchPlaceholder": "Buscar voluntarios por nombre, correo electrónico o habilidades...",
+            "filterPlaceholder": "Estado",
+            "filterOptions": {
+                "all": "Estado",
+                "active": "Activos",
+                "inactive": "Inactivos"
+            },
+            "advancedFilterButton": "Filtros Avanzados",
+            "addVolunteerButton": "Agregar Voluntario"
+
         }
     },
 
