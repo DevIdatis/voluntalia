@@ -52,6 +52,11 @@
         }
     },
 
+    "volunteers": {
+        "title": "Volunteers",
+        "description": "Manage and connect with our volunteer community"
+    },
+
     "footer": {
         "copyright": "© {{year}} IDATIS Organization. Empowering communities through volunteer service."
     }

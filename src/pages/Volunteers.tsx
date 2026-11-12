@@ -20,8 +20,10 @@ import { ActivityManagementModal } from '@/components/volunteers/ActivityManagem
 import { AdvancedFilters } from '@/components/volunteers/AdvancedFilters';
 import { ConfirmDeactivateDialog } from '@/components/common/ConfirmDeactivateDialog';
 import { useVolunteersPage } from '@/hooks/pages/useVolunteersPage';
+import { useTranslation } from "react-i18next";
 
 const Volunteers: React.FC = () => {
+  const { t } = useTranslation();
   const {
     // Data
     volunteers,
@@ -100,8 +102,8 @@ const Volunteers: React.FC = () => {
 
   return (
     <PageLayout
-      title="Volunteers"
-      description="Manage and connect with our volunteer community"
+      title={t("volunteers.title")}
+      description={t("volunteers.description")}
     >
       {/* Stats Grid */}
       <StatsGrid stats={stats} className="mb-8" />
