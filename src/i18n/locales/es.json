@@ -182,7 +182,12 @@
 
     "activities": {
         "title": "Gestión de actividades",
-        "description": "Gestionar actividades y tareas de voluntariado"
+        "description": "Gestionar actividades y tareas de voluntariado",
+        "searchFilter": {
+            "placeholder": "Buscar actividades...",
+            "manage": "Gestionar habilidades",
+            "add": "Añadir actividad"
+        }
     },
     
 

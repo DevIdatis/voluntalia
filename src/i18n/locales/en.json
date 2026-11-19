@@ -182,7 +182,12 @@
 
     "activities": {
         "title": "Activities Management",
-        "description": "Manage volunteer activities and tasks"
+        "description": "Manage volunteer activities and tasks",
+        "searchFilter": {
+            "placeholder": "Search activities...",
+            "manage": "Manage Skills",
+            "add": "Add Activity"
+        }
     },
 
     "footer": {

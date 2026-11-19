@@ -68,7 +68,7 @@ export default function Activities() {
       <SearchFilterBar
         searchTerm={searchAndFilter.searchTerm}
         onSearchChange={searchAndFilter.setSearchTerm}
-        searchPlaceholder="Search activities..."
+        searchPlaceholder={t("activities.searchFilter.placeholder")}
         actions={
           <div className="flex gap-2">
             <Button
@@ -77,14 +77,14 @@ export default function Activities() {
               className="shadow-soft"
             >
               <Award className="h-4 w-4 mr-2" />
-              Manage Skills
+              {t("activities.searchFilter.manage")}
             </Button>
             <Button
               onClick={() => createModal.openModal()}
               className="shadow-soft"
             >
               <Plus className="h-4 w-4 mr-2" />
-              Add Activity
+              {t("activities.searchFilter.add")}
             </Button>
           </div>
         }
