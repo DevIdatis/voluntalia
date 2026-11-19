@@ -31,6 +31,7 @@
         "activities": "Activities",
         "role": "Role",
         "joined": "Joined",
+        "cancel": "Cancel",
         "roles": {
             "VOLUNTEER": "Volunteer",
             "COORDINATOR": "Coordinator",

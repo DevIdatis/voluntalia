@@ -449,7 +449,7 @@ const AddVolunteerModal: React.FC<AddVolunteerModalProps> = ({
               variant="outline"
               onClick={() => onOpenChange(false)}
             >
-              Cancel
+              {t("common.cancel")}
             </Button>
             <Button
               type="submit"

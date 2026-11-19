@@ -31,6 +31,7 @@
         "activities": "Actividades",
         "role": "Rol",
         "joined": "Se unió",
+        "cancel": "Cancelar",
         "roles": {
             "VOLUNTEER": "Voluntario",
             "COORDINATOR": "Coordinador",
