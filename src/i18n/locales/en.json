@@ -32,6 +32,11 @@
         "role": "Role",
         "joined": "Joined",
         "cancel": "Cancel",
+        "description": "Description",
+        "noDescription": "No description",
+        "name": "Name",
+        "status": "Status",
+        "actions": "Actions",
         "roles": {
             "VOLUNTEER": "Volunteer",
             "COORDINATOR": "Coordinator",
@@ -187,6 +192,11 @@
             "placeholder": "Search activities...",
             "manage": "Manage Skills",
             "add": "Add Activity"
+        },
+        "table": {
+            "title": "Activities List",
+            "searchNoMatch": "No activities found matching your search.",
+            "noActivities": "No activities available."
         }
     },
 

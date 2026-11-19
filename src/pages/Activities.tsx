@@ -94,7 +94,7 @@ export default function Activities() {
       {/* Activities Table */}
       <Card className="shadow-soft border-accent/20">
         <CardHeader>
-          <CardTitle>Activities List</CardTitle>
+          <CardTitle>{t("activities.table.title")}</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
@@ -105,19 +105,19 @@ export default function Activities() {
             <div className="text-center py-8">
               <p className="text-muted-foreground">
                 {searchAndFilter.searchTerm
-                  ? 'No activities found matching your search.'
-                  : 'No activities available.'}
+                  ? t("activities.table.searchNoMatch")
+                  : t("activities.table.noActivities")}
               </p>
             </div>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Volunteers</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableHead>{t("common.name")}</TableHead>
+                  <TableHead>{t("common.description")}</TableHead>
+                  <TableHead>{t("common.volunteers")}</TableHead>
+                  <TableHead>{t("common.status")}</TableHead>
+                  <TableHead className="text-right">{t("common.actions")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -135,7 +135,7 @@ export default function Activities() {
                         </span>
                       ) : (
                         <span className="text-xs text-muted-foreground italic">
-                          No description
+                          {t("common.noDescription")}
                         </span>
                       )}
                     </TableCell>
@@ -148,7 +148,7 @@ export default function Activities() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="secondary">Active</Badge>
+                      <Badge variant="secondary">{t("common.active")}</Badge>
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex gap-2 justify-end">

@@ -32,6 +32,11 @@
         "role": "Rol",
         "joined": "Se unió",
         "cancel": "Cancelar",
+        "description": "Descripción",
+        "noDescription": "Sin descripción",
+        "name": "Nombre",
+        "status": "Estado",
+        "actions": "Acciones",
         "roles": {
             "VOLUNTEER": "Voluntario",
             "COORDINATOR": "Coordinador",
@@ -187,6 +192,11 @@
             "placeholder": "Buscar actividades...",
             "manage": "Gestionar habilidades",
             "add": "Añadir actividad"
+        },
+        "table": {
+            "title": "Lista de actividades",
+            "searchNoMatch": "No se han encontrado actividades que coincidan con tu búsqueda.",
+            "noActivities": "No hay actividades disponibles."
         }
     },
     
