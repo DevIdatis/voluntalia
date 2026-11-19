@@ -197,6 +197,15 @@
             "title": "Activities List",
             "searchNoMatch": "No activities found matching your search.",
             "noActivities": "No activities available."
+        },
+        "modal": {
+            "add": {
+                "title": "Create New Activity",
+                "name": "Activity Name",
+                "placeholder": "Enter activity name",
+                "descriptionPlaceholder": "Enter activity description (optional)",
+                "submit": "Create Activity"
+            }
         }
     },
 

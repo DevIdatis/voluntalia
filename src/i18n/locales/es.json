@@ -197,6 +197,15 @@
             "title": "Lista de actividades",
             "searchNoMatch": "No se han encontrado actividades que coincidan con tu búsqueda.",
             "noActivities": "No hay actividades disponibles."
+        },
+        "modal": {
+            "add": {
+                "title": "Crear nueva actividad",
+                "name": "Nombre de la actividad",
+                "placeholder": "Introduce el nombre de la actividad",
+                "descriptionPlaceholder": "Introduce la descripción de la actividad (opcional)",
+                "submit": "Crear actividad"
+            }
         }
     },
     
