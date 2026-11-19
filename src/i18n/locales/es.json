@@ -206,6 +206,10 @@
                 "placeholder": "Introduce el nombre de la actividad",
                 "descriptionPlaceholder": "Introduce la descripción de la actividad (opcional)",
                 "submit": "Crear actividad"
+            },
+            "edit": {
+                "title": "Editar actividad",
+                "submit": "Actualizar actividad"
             }
         }
     },

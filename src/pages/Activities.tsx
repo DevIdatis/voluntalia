@@ -225,18 +225,18 @@ export default function Activities() {
           handleModalClose();
         }}
         onSubmit={handleUpdate}
-        title="Edit Activity"
-        submitText="Update Activity"
+        title={t("activities.modal.edit.title")}
+        submitText={t("activities.modal.edit.submit")}
         isLoading={isUpdating}
       >
         <div className="space-y-4">
           <div>
-            <Label htmlFor="edit-name">Activity Name *</Label>
+            <Label htmlFor="edit-name">{t("activities.modal.add.name")} *</Label>
             <Input
               id="edit-name"
               value={form.formData.name}
               onChange={(e) => form.updateField('name', e.target.value)}
-              placeholder="Enter activity name"
+              placeholder={t("activities.modal.add.placeholder")}
             />
             {form.errors.name && (
               <p className="text-sm text-destructive mt-1">
@@ -245,12 +245,12 @@ export default function Activities() {
             )}
           </div>
           <div>
-            <Label htmlFor="edit-description">Description</Label>
+            <Label htmlFor="edit-description">{t("common.description")}</Label>
             <Textarea
               id="edit-description"
               value={form.formData.description}
               onChange={(e) => form.updateField('description', e.target.value)}
-              placeholder="Enter activity description (optional)"
+              placeholder={t("activities.modal.add.descriptionPlaceholder")}
               rows={3}
             />
           </div>

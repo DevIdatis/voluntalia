@@ -206,6 +206,10 @@
                 "placeholder": "Enter activity name",
                 "descriptionPlaceholder": "Enter activity description (optional)",
                 "submit": "Create Activity"
+            },
+            "edit": {
+                "title": "Edit Activity",
+                "submit": "Update Activity"
             }
         }
     },
