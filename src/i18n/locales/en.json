@@ -223,6 +223,30 @@
                 "description": "Are you sure you want to delete \"{{activity}}\"? This action cannot be undone.",
                 "success": "Activity deleted successfully",
                 "error": "Failed to delete activity"
+            },
+            "skills": {
+                "title": "Manage Skills",
+                "description": "Create, edit, or delete skills for volunteers",
+                "loading": "Loading skills...",
+                "placeholder": "Enter new skill name...",
+                "add": "Add",
+                "all": "All Skills",
+                "searchNoMatch": "No matching skills. You can create this one!",
+                "toast": {
+                    "create": {
+                        "title": "Skill created successfully",
+                        "error": "Error creating skill"
+                    },
+                    "update": {
+                        "taken": "A skill with this name already exists",
+                        "success": "Skill updated successfully",
+                        "error": "Error updating skill"
+                    },
+                    "delete": {
+                        "success": "Skill deleted successfully",
+                        "error": "Error deleting skill"
+                    }
+                }
             }
         }
 

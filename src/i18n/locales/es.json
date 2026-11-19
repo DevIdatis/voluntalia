@@ -223,6 +223,30 @@
                 "description": "¿Estás seguro de que quieres eliminar \"{{activity}}\"? Esta acción no se puede deshacer.",
                 "success": "Actividad eliminada correctamente",
                 "error": "No se pudo eliminar la actividad"
+            },
+            "skills": {
+                "title": "Gestionar habilidades",
+                "description": "Crear, editar o eliminar habilidades para los voluntarios",
+                "loading": "Cargando habilidades...",
+                "placeholder": "Introduce el nombre de la nueva habilidad...",
+                "add": "Agregar",
+                "all": "Todas las habilidades",
+                "searchNoMatch": "No hay habilidades que coincidan. ¡Puedes crear una!",
+                "toast": {
+                    "create": {
+                        "title": "Habilidad creada correctamente",
+                        "error": "Error al crear la habilidad"
+                    },
+                    "update": {
+                        "taken": "Ya existe una habilidad con este nombre",
+                        "success": "Habilidad actualizada correctamente",
+                        "error": "Error al actualizar la habilidad"
+                    },
+                    "delete": {
+                        "success": "Habilidad eliminada correctamente",
+                        "error": "Error al eliminar la habilidad"
+                    }
+                }
             }
         }
     },

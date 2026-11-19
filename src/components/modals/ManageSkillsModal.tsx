@@ -10,6 +10,7 @@ import { useDeleteSkill } from "@/hooks/skill/useDeleteSkill";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, X, Check } from "lucide-react";
 import { Skill } from "@/types/skill";
+import { useTranslation } from "react-i18next";
 
 interface ManageSkillsModalProps {
   open: boolean;
@@ -17,6 +18,7 @@ interface ManageSkillsModalProps {
 }
 
 export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps) => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const { data: skills = [], isLoading } = useSkills();
   const createMutation = useCreateSkill();
@@ -34,12 +36,12 @@ export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps
       { name: newSkillName.trim() },
       {
         onSuccess: () => {
-          toast({ title: "Skill created successfully" });
+          toast({ title: t("activities.modal.skills.toast.create.title") });
           setNewSkillName("");
         },
         onError: () => {
           toast({
-            title: "Error creating skill",
+            title: t("activities.modal.skills.toast.create.error"),
             variant: "destructive",
           });
         },
@@ -54,20 +56,20 @@ export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps
     );
     if (alreadyExists) {
       toast({
-        title: "A skill with this name already exists"})
+        title: t("activities.modal.skills.toast.update.taken")})
       return;
     }
     updateMutation.mutate(
       { id: editingSkill.id, skill: { name: editName.trim() } },
       {
         onSuccess: () => {
-          toast({ title: "Skill updated successfully" });
+          toast({ title: t("activities.modal.skills.toast.update.success") });
           setEditingSkill(null);
           setEditName("");
         },
         onError: () => {
           toast({
-            title: "Error updating skill",
+            title: t("activities.modal.skills.toast.update.error"),
             variant: "destructive",
           });
         },
@@ -78,11 +80,11 @@ export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps
   const handleDelete = async (id: string) => {
     deleteMutation.mutate(id, {
       onSuccess: () => {
-        toast({ title: "Skill deleted successfully" });
+        toast({ title: t("activities.modal.skills.toast.delete.success") });
       },
       onError: () => {
         toast({
-          title: "Error deleting skill",
+          title: t("activities.modal.skills.toast.delete.error"),
           variant: "destructive",
         });
       },
@@ -108,24 +110,24 @@ export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps
   const alreadyExists = skills.some(
     (skill) => skill.name.toLowerCase() === newSkillName.trim().toLowerCase()
   );
-
+  
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Manage Skills</DialogTitle>
+          <DialogTitle>{t("activities.modal.skills.title")}</DialogTitle>
           <DialogDescription>
-            Create, edit, or delete skills for volunteers
+            {t("activities.modal.skills.description")}
           </DialogDescription>
         </DialogHeader>
 
         {isLoading ? (
-          <div>Loading skills...</div>
+          <div>{t("activities.modal.skills.loading")}</div>
         ) : (
           <div className="space-y-6">
             <div className="flex gap-2">
               <Input
-                placeholder="Enter new skill name..."
+                placeholder={t("activities.modal.skills.placeholder")}
                 value={newSkillName}
                 onChange={(e) => setNewSkillName(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleCreate()}
@@ -135,15 +137,15 @@ export const ManageSkillsModal = ({ open, onOpenChange }: ManageSkillsModalProps
                 disabled={createMutation.isPending || !newSkillName.trim() || alreadyExists}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add
+                {t("activities.modal.skills.add")}
               </Button>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-sm font-medium">All Skills</h4>
+              <h4 className="text-sm font-medium">{t("activities.modal.skills.all")}</h4>
               <div className="max-h-[400px] overflow-y-auto space-y-2">
                 {filteredSkills.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No matching skills. You can create this one!</p>
+                  <p className="text-sm text-muted-foreground">{t("activities.modal.skills.searchNoMatch")}</p>
                 ) : (
                   filteredSkills.map((skill) => (
                     <div key={skill.id} className="flex items-center justify-between p-3 bg-secondary rounded-lg">
