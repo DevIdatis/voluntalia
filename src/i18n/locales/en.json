@@ -38,6 +38,7 @@
         "status": "Status",
         "actions": "Actions",
         "save": "Save",
+        "close": "Close",
         "roles": {
             "VOLUNTEER": "Volunteer",
             "COORDINATOR": "Coordinator",
@@ -210,6 +211,9 @@
             "edit": {
                 "title": "Edit Activity",
                 "submit": "Update Activity"
+            },
+            "volunteers": {
+                "title": "VOLUNTEERS FOR"
             }
         }
     },

@@ -38,6 +38,7 @@
         "status": "Estado",
         "actions": "Acciones",
         "save": "Guardar",
+        "close": "Cerrar",
         "roles": {
             "VOLUNTEER": "Voluntario",
             "COORDINATOR": "Coordinador",
@@ -210,6 +211,9 @@
             "edit": {
                 "title": "Editar actividad",
                 "submit": "Actualizar actividad"
+            },
+            "volunteers": {
+                "title": "VOLUNTARIOS PARA"
             }
         }
     },

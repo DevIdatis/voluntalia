@@ -268,8 +268,8 @@ export default function Activities() {
           showVolunteersModal.closeModal();
           handleModalClose();
         }}
-        title={`VOLUNTEERS FOR ${showVolunteersModal.data?.title}`}
-        submitText="Close"
+        title={`${t("activities.modal.volunteers.title")} ${showVolunteersModal.data?.title}`}
+        submitText={t("common.close")}
       >
         <div className="space-y-4">
           <div>
