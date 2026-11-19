@@ -10,6 +10,7 @@ import { useConfirmDialog } from '@/hooks/common/useConfirmDialog';
 import { useToast } from '@/hooks/use-toast';
 import { ActivityTask } from '@/types/activity';
 import { Clock, CheckCircle, FileText } from 'lucide-react';
+import { useTranslation } from "react-i18next";
 
 interface ActivityFormData {
   name: string;
@@ -22,6 +23,7 @@ const initialFormData: ActivityFormData = {
 };
 
 export const useActivitiesPage = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
 
   // Data hooks
@@ -146,21 +148,21 @@ export const useActivitiesPage = () => {
 
   const handleDelete = (activity: ActivityTask) => {
     confirmDialog.showDialog({
-      title: 'Delete Activity',
-      description: `Are you sure you want to delete "${activity.title}"? This action cannot be undone.`,
-      confirmText: 'Delete',
+      title: t("activities.modal.delete.title"),
+      description: t("activities.modal.delete.description", {activity: activity.title}),
+      confirmText: t("common.delete"),
       variant: 'destructive',
       onConfirm: async () => {
         try {
           await deleteActivity.mutateAsync(activity.id);
           toast({
-            title: 'Success',
-            description: 'Activity deleted successfully',
+            title: t("common.success"),
+            description: t("activities.modal.delete.success"),
           });
         } catch (error) {
           toast({
-            title: 'Error',
-            description: 'Failed to delete activity',
+            title: t("common.error"),
+            description: t("activities.modal.delete.error"),
             variant: 'destructive',
           });
         }

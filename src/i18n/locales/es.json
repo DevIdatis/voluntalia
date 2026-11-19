@@ -39,6 +39,9 @@
         "actions": "Acciones",
         "save": "Guardar",
         "close": "Cerrar",
+        "delete": "Eliminar",
+        "error": "Error",
+        "success": "Éxito",
         "roles": {
             "VOLUNTEER": "Voluntario",
             "COORDINATOR": "Coordinador",
@@ -214,6 +217,12 @@
             },
             "volunteers": {
                 "title": "VOLUNTARIOS PARA"
+            },
+            "delete": {
+                "title": "Eliminar actividad",
+                "description": "¿Estás seguro de que quieres eliminar \"{{activity}}\"? Esta acción no se puede deshacer.",
+                "success": "Actividad eliminada correctamente",
+                "error": "No se pudo eliminar la actividad"
             }
         }
     },

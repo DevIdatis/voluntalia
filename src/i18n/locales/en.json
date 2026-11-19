@@ -39,6 +39,9 @@
         "actions": "Actions",
         "save": "Save",
         "close": "Close",
+        "delete": "Delete",
+        "error": "Error",
+        "success": "Success",
         "roles": {
             "VOLUNTEER": "Volunteer",
             "COORDINATOR": "Coordinator",
@@ -214,8 +217,16 @@
             },
             "volunteers": {
                 "title": "VOLUNTEERS FOR"
+            },
+            "delete": {
+                "title": "Delete Activity",
+                "description": "Are you sure you want to delete \"{{activity}}\"? This action cannot be undone.",
+                "success": "Activity deleted successfully",
+                "error": "Failed to delete activity"
             }
         }
+
+
     },
 
     "footer": {
