@@ -37,6 +37,7 @@
         "name": "Name",
         "status": "Status",
         "actions": "Actions",
+        "save": "Save",
         "roles": {
             "VOLUNTEER": "Volunteer",
             "COORDINATOR": "Coordinator",
