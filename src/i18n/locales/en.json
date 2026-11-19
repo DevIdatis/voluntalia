@@ -180,6 +180,11 @@
         }
     },
 
+    "activities": {
+        "title": "Activities Management",
+        "description": "Manage volunteer activities and tasks"
+    },
+
     "footer": {
         "copyright": "© {{year}} IDATIS Organization. Empowering communities through volunteer service."
     }

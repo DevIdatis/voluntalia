@@ -21,8 +21,10 @@ import { FormModal } from '@/components/common/FormModal';
 import { ConfirmDialog } from '@/components/common/ConfirmDialog';
 import { useActivitiesPage } from '@/hooks/pages/useActivitiesPage';
 import { ManageSkillsModal } from '@/components/modals/ManageSkillsModal';
+import { useTranslation } from "react-i18next";
 
 export default function Activities() {
+  const { t } = useTranslation();
   const [skillsModalOpen, setSkillsModalOpen] = useState(false);
   const {
     // Data
@@ -56,8 +58,8 @@ export default function Activities() {
 
   return (
     <PageLayout
-      title="Activities Management"
-      description="Manage volunteer activities and tasks"
+      title={t("activities.title")}
+      description={t("activities.description")}
     >
       {/* Stats */}
       <StatsGrid stats={stats} columns={3} className="mb-6" />

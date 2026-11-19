@@ -180,6 +180,12 @@
         }
     },
 
+    "activities": {
+        "title": "Gestión de actividades",
+        "description": "Gestionar actividades y tareas de voluntariado"
+    },
+    
+
     "footer": {
         "copyright": "© {{year}} Organización IDATIS. Empoderando a las comunidades a través del voluntariado."
     }
