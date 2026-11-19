@@ -134,13 +134,13 @@ export const useActivitiesPage = () => {
       editModal.closeModal();
       form.resetForm();
       toast({
-        title: 'Success',
-        description: 'Activity updated successfully',
+        title: t("activities.modal.edit.toast.title"),
+        description: t("activities.modal.edit.toast.success"),
       });
     } catch (error) {
       toast({
-        title: 'Error',
-        description: 'Failed to update activity',
+        title: t("common.error"),
+        description: t("activities.modal.edit.toast.error"),
         variant: 'destructive',
       });
     }

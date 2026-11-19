@@ -213,7 +213,13 @@
             },
             "edit": {
                 "title": "Edit Activity",
-                "submit": "Update Activity"
+                "submit": "Update Activity",
+                "toast": {
+                    "title": "Success",
+                    "success": "Activity updated successfully",
+                    "errorTitle": "Error",
+                    "error": "Failed to update activity"
+                }
             },
             "volunteers": {
                 "title": "VOLUNTEERS FOR"
